@@ -54,7 +54,7 @@ autorecording = false
 const { Miminnya, NameStore, BotName, fake, oNumber, IG, lolkey, Gopay, Dana, Pulsa} = require('./setting.json')
 gambar = fs.readFileSync('./media/logo.jpg')
 tamnel = fs.readFileSync('./media/logotoko.jpg')
-td = fs.readFileSync('./media/TD.jpg')
+td = fs.readFileSync('./media/masjid.jpg')
 
 //══════════[ Music ]══════════//
 kaido = fs.readFileSync('./media/audio/kaido.mp3')
@@ -307,7 +307,7 @@ const isUrl = (url) => {
                             surface : 1,
                             message: `${tanggal}`, 
                             orderTitle: `${BotName}`,
-                            thumbnail: tamnel, //Gambarnye
+                            thumbnail: td, //Gambarnye
                             sellerJid: '0@s.whatsapp.net' 
                           }
                         }
