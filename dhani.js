@@ -513,6 +513,10 @@ Silahkan cari barang yang anda butuhkan`,
           "rowId": `${prefix}laptop`
         },
         {
+          "title": "Televisi",
+          "rowId": `${prefix}tv`
+        },
+        {
           "title": "Kulkas",
           "rowId": `${prefix}kulkas`
         }
@@ -537,23 +541,23 @@ Ini Daftar *Mesin Cuci* yang Ready`,
         rows: [
         {
             "title": "Sharp",
-            "rowId": `${prefix}mc`
+            "rowId": `${prefix}mcs`
         },
         {
             "title": "Samsung",
-            "rowId": `${prefix}hp`
+            "rowId": `${prefix}mcsam`
           },
         {
           "title": "Polytron",
-          "rowId": `${prefix}ac`
+          "rowId": `${prefix}mcpol`
         },
         {
           "title": "Aqua",
-          "rowId": `${prefix}laptop`
+          "rowId": `${prefix}mcaq`
         },
         {
           "title": "Sanken",
-          "rowId": `${prefix}kulkas`
+          "rowId": `${prefix}mcsan`
         }
         ]
         }],
@@ -563,7 +567,7 @@ Ini Daftar *Mesin Cuci* yang Ready`,
         Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
         break
 
-//══════════[ HandPhone ]══════════//
+//══════════[ HAND PHONE ]══════════//
 case 'hp':
     listMsg = {
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
@@ -577,35 +581,39 @@ Ini Daftar *Hand Phone* yang Ready`,
     rows: [
     {
         "title": "Samsung",
-        "rowId": `${prefix}mc`
+        "rowId": `${prefix}samsung`
     },
     {
         "title": "Xiaomi",
-        "rowId": `${prefix}hp`
+        "rowId": `${prefix}xiaomi`
       },
     {
       "title": "Oppo",
-      "rowId": `${prefix}ac`
+      "rowId": `${prefix}oppo`
     },
     {
       "title": "Realme",
-      "rowId": `${prefix}laptop`
+      "rowId": `${prefix}realme`
     },
     {
       "title": "Vivo",
-      "rowId": `${prefix}kulkas`
+      "rowId": `${prefix}vivo`
     },
     {
         "title": "Advan",
-        "rowId": `${prefix}kulkas`
+        "rowId": `${prefix}advan`
       },
       {
         "title": "Iphone",
-        "rowId": `${prefix}kulkas`
+        "rowId": `${prefix}iphone`
+      },
+      {
+        "title": "Nokia",
+        "rowId": `${prefix}nokia`
       },
       {
         "title": "Huawei",
-        "rowId": `${prefix}kulkas`
+        "rowId": `${prefix}huawei`
       }
     ]
     }],
@@ -616,7 +624,7 @@ Ini Daftar *Hand Phone* yang Ready`,
     break
 
 //══════════[ AC ]══════════//
-case 'mc':
+case 'ac':
     listMsg = {
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
@@ -628,24 +636,24 @@ Ini Daftar *AC* yang Ready`,
     "title": `${time} - ${ucapanWaktu} - ${pushname}`,
     rows: [
     {
-        "title": "Sharp",
-        "rowId": `${prefix}mc`
+        "title": "Daikin",
+        "rowId": `${prefix}acdaikin`
     },
     {
-        "title": "Samsung",
-        "rowId": `${prefix}hp`
+        "title": "Sharp",
+        "rowId": `${prefix}acs`
       },
     {
-      "title": "Polytron",
-      "rowId": `${prefix}ac`
+      "title": "Panasonic",
+      "rowId": `${prefix}acpan`
     },
     {
-      "title": "Aqua",
-      "rowId": `${prefix}laptop`
+      "title": "LG",
+      "rowId": `${prefix}aclg`
     },
     {
-      "title": "Sanken",
-      "rowId": `${prefix}kulkas`
+      "title": "Samsung",
+      "rowId": `${prefix}acsam`
     }
     ]
     }],
@@ -655,8 +663,8 @@ Ini Daftar *AC* yang Ready`,
     Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break   
     
-//══════════[ LAPTOP]══════════//
-case 'mc':
+//══════════[ LAPTOP ]══════════//
+case 'laptop':
     listMsg = {
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
@@ -668,24 +676,20 @@ Ini Daftar *Laptop* yang Ready`,
     "title": `${time} - ${ucapanWaktu} - ${pushname}`,
     rows: [
     {
-        "title": "Sharp",
-        "rowId": `${prefix}mc`
+        "title": "Asus",
+        "rowId": `${prefix}la`
     },
     {
-        "title": "Samsung",
-        "rowId": `${prefix}hp`
+        "title": "lenovo",
+        "rowId": `${prefix}ll`
       },
     {
-      "title": "Polytron",
-      "rowId": `${prefix}ac`
+      "title": "dell",
+      "rowId": `${prefix}ld`
     },
     {
-      "title": "Aqua",
-      "rowId": `${prefix}laptop`
-    },
-    {
-      "title": "Sanken",
-      "rowId": `${prefix}kulkas`
+      "title": "acer",
+      "rowId": `${prefix}lac`
     }
     ]
     }],
@@ -695,8 +699,8 @@ Ini Daftar *Laptop* yang Ready`,
     Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
 
-//══════════[ Kulkas ]══════════//
-case 'mc':
+//══════════[ KULKAS ]══════════//
+case 'kulkas':
     listMsg = {
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
@@ -709,23 +713,23 @@ Ini Daftar *Kulkas* yang Ready`,
     rows: [
     {
         "title": "Sharp",
-        "rowId": `${prefix}mc`
+        "rowId": `${prefix}ks`
     },
     {
         "title": "Samsung",
-        "rowId": `${prefix}hp`
+        "rowId": `${prefix}ksam`
       },
     {
-      "title": "Polytron",
-      "rowId": `${prefix}ac`
+      "title": "LG",
+      "rowId": `${prefix}klg`
     },
     {
       "title": "Aqua",
-      "rowId": `${prefix}laptop`
+      "rowId": `${prefix}kaq`
     },
     {
-      "title": "Sanken",
-      "rowId": `${prefix}kulkas`
+      "title": "Polytron",
+      "rowId": `${prefix}kpol`
     }
     ]
     }],
@@ -734,6 +738,47 @@ Ini Daftar *Kulkas* yang Ready`,
     Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
     Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
+    
+//══════════[ TELEVISI ]══════════//
+case 'tv':
+    listMsg = {
+    buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
+    footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
+    description: `Halo Kak @${sender.split('@')[0]},
+Selamat datang di *${NameStore}*
+Ini Daftar *Televisi* yang Ready`,
+    sections: [
+    {
+    "title": `${time} - ${ucapanWaktu} - ${pushname}`,
+    rows: [
+    {
+        "title": "Sharp",
+        "rowId": `${prefix}tvs`
+    },
+    {
+        "title": "Samsung",
+        "rowId": `${prefix}tvsam`
+      },
+    {
+      "title": "LG",
+      "rowId": `${prefix}tvlg`
+    },
+    {
+      "title": "Panasonic",
+      "rowId": `${prefix}tvpan`
+    },
+    {
+      "title": "Polytron",
+      "rowId": `${prefix}tvpol`
+    }
+    ]
+    }],
+    listType: 1
+    }
+    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    break
+    
     
 //=========
 case 'proses':
