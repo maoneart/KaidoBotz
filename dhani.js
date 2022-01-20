@@ -1003,7 +1003,7 @@ but = [
           { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
           { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER'}, type: 1 }
         ]
-        sendButImage(from, menu, teks, but)
+        sendButImage(from, menunya, teks, gambar, but)
 break
 
 case 'done':
