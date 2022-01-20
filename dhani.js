@@ -635,7 +635,7 @@ case 'samsung':
 Ini list harga Hp Samsung yang terbaru`,
     sections: [
     {
-    "title": `${wib} - ${ucapanWaktu} - ${pushname}`,
+    "title": `${time} - ${ucapanWaktu} - ${pushname}`,
     rows: [
     {
         "title": "Samsung Galaxy M13 3GB/32GB",
@@ -748,7 +748,7 @@ case 'infinix':
 Ini list harga Hp Infinix yang terbaru`,
     sections: [
     {
-    "title": `${wib} - ${ucapanWaktu} - ${pushname}`,
+    "title": `${time} - ${ucapanWaktu} - ${pushname}`,
     rows: [
     {
         "title": "Infinix Hot 10 Play 3GB/32GB",
