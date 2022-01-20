@@ -1003,7 +1003,7 @@ but = [
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
-sendButImage(from, menu, fake, but)
+sendButImage(from, menu, but)
 break
 case 'done':
 if (!isGroup) return reply(mess.only.group)
