@@ -998,7 +998,11 @@ menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
 *📅 Tanggal ⵓ* _${tanggal}_
 
 _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
-reply(menu)
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+reply(menu, but)
 break
 case 'done':
 if (!isGroup) return reply(mess.only.group)
