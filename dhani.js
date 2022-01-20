@@ -990,21 +990,21 @@ Ini Daftar *Televisi* yang Ready`,
     
 //=========
 case 'order':
-if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
-menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
+    menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
 
 *⏰ Jam ⵓ* _${time} WIB_
 *📅 Tanggal ⵓ* _${tanggal}_
 
 _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
+
 but = [
   { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
-sendButImage(from, menu, but)
+sendButImage(from, menu, fake, but)
 break
+
 case 'done':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
