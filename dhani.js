@@ -443,8 +443,8 @@ Ada yang bisa Kaido Bantu?`,
             "rowId": `${prefix}about`
         },
         {
-            "title": "Cek Harga",
-            "rowId": `${prefix}cekharga`
+            "title": "Cek Harga Barang",
+            "rowId": `${prefix}store`
           },
         {
           "title": "Menu Master",
