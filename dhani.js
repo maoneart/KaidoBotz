@@ -657,7 +657,7 @@ Ini list harga Hp Samsung yang terbaru`,
     }],
     listType: 1
     }
-    pebz.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ SAMSUNG ]══════════//
@@ -766,7 +766,7 @@ Ini list harga Hp Infinix yang terbaru`,
     }],
     listType: 1
     }
-    pebz.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ INFINIX ]══════════//
