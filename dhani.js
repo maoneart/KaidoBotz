@@ -673,7 +673,7 @@ _Cicilan 6 Bulan_`
 
 sgm13 = fs.readFileSync('./media/catalog/sgm13.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -691,7 +691,7 @@ _Cicilan 6 Bulan_`
 
 sgta7l = fs.readFileSync('./media/catalog/sgta7l.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -709,7 +709,7 @@ _Cicilan 6 Bulan_`
 
 sga12 = fs.readFileSync('./media/catalog/sga12.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -727,7 +727,7 @@ _Cicilan 6 Bulan_`
 
 sgm22 = fs.readFileSync('./media/catalog/sgm22.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -782,7 +782,7 @@ _Cicilan 6 Bulan_`
 
 ih10p= fs.readFileSync('./media/catalog/ih10p.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -800,7 +800,7 @@ _Cicilan 6 Bulan_`
 
 in10= fs.readFileSync('./media/catalog/in10.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER'}, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -818,7 +818,7 @@ _Cicilan 6 Bulan_`
 
 ih11p = fs.readFileSync('./media/catalog/ih11p.jpg')
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
@@ -989,7 +989,7 @@ Ini Daftar *Televisi* yang Ready`,
     
     
 //=========
-case 'bayar':
+case 'order':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
@@ -1237,22 +1237,20 @@ but = [
 break
 
 case 'bayar':
-case 'payment':
-gambar = fs.readFileSync('./media/qr.jpg')
-menunya = `*「 PAYMENT 」*
+    menu =  `*「 PAYMENT 」*
 
-• *Gopay: ${Gopay}*
-• *Dana : ${Dana}*
-• *Ovo : ${Ovo}*
-• *Pulsa : ${Pulsa}*
+• *Gopay : 082122365620*
+• *Dana : 082122365620*
+• *Ovo : 082122365620*
 • *Scan Qris Di Atas !!*`
-teks =
-`「 ${BotName} 」\n*${tanggal}*`
+
+dana = fs.readFileSync('./media/catalog/dana.jpg')
 but = [
-          { buttonId: `${prefix}menu`, buttonText: { displayText: 'ᴍᴇɴᴜ' }, type: 1 },
-          { buttonId: `${prefix}owner`, buttonText: { displayText: 'ᴏᴡɴᴇʀ' }, type: 1 }
-        ]
-        sendButImage(from, menunya, teks, gambar, but)
+  { buttonId: `${prefix}menu`, buttonText: { displayText: 'MENU' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, dana, but)
 break
 
 //══════════[ Fitur Owner ]══════════//
