@@ -998,7 +998,7 @@ case 'order':
 _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
 
 but = [
-  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
