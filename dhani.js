@@ -999,10 +999,11 @@ menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
 
 _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
-reply(menu, but)
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, but)
 break
 case 'done':
 if (!isGroup) return reply(mess.only.group)
