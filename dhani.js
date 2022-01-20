@@ -997,12 +997,13 @@ case 'order':
 
 _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
 
+teks =
+`「 ${BotName} 」\n*${tanggal}*`
 but = [
-  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
-  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
-]
-//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
-sendButImage(from, menu, fake, but)
+          { buttonId: `${prefix}payment`, buttonText: { displayText: 'ᴘᴀʏᴍᴇɴᴛ' }, type: 1 },
+          { buttonId: `${prefix}owner`, buttonText: { displayText: 'ᴏᴡɴᴇʀ' }, type: 1 }
+        ]
+        sendButImage(from, menunya, teks, but)
 break
 
 case 'done':
