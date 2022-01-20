@@ -1300,7 +1300,7 @@ case 'bc':
 			], "headerType": 'LOCATION',
 			locationMessage: { degreesLatitude: '',
 			degreesLongitude: '',
-			jpegThumbnail: gambar,
+			jpegThumbnail: td,
 			}}, MessageType.buttonsMessage )
 }
              fakeyt('Suksess broadcast')
