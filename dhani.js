@@ -307,7 +307,7 @@ const isUrl = (url) => {
                             surface : 1,
                             message: `${tanggal}`, 
                             orderTitle: `${BotName}`,
-                            thumbnail: td, //Gambarnye
+                            thumbnail: gambar, //Gambarnye
                             sellerJid: '0@s.whatsapp.net' 
                           }
                         }
@@ -1300,7 +1300,7 @@ case 'bc':
 			], "headerType": 'LOCATION',
 			locationMessage: { degreesLatitude: '',
 			degreesLongitude: '',
-			jpegThumbnail: td,
+			jpegThumbnail: gambar,
 			}}, MessageType.buttonsMessage )
 }
              fakeyt('Suksess broadcast')
