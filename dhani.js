@@ -600,6 +600,10 @@ Ini Daftar *Hand Phone* yang Ready`,
       "rowId": `${prefix}vivo`
     },
     {
+        "title": "Infinix",
+        "rowId": `${prefix}infinix`
+      },
+    {
         "title": "Advan",
         "rowId": `${prefix}advan`
       },
@@ -622,6 +626,210 @@ Ini Daftar *Hand Phone* yang Ready`,
     Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
     Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
+//══════════[ LIST SAMSUNG ]══════════//
+case 'samsung':
+    listMsg = {
+    buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
+    footerText: tanggal,
+    description: `Halo Kak @${sender.split('@')[0]},
+Ini list harga Hp Samsung yang terbaru`,
+    sections: [
+    {
+    "title": `${wib} - ${ucapanWaktu} - ${pushname}`,
+    rows: [
+    {
+        "title": "Samsung Galaxy M13 3GB/32GB",
+        "rowId": `${prefix}sgm13`
+    },
+    {
+        "title": "Samsung Galaxy Tab A7 Lite 3GB/32GB",
+        "rowId": `${prefix}sgta7l`
+      },
+    {
+      "title": "Samsung Galaxy A12 6GB/128GB",
+      "rowId": `${prefix}sga12`
+    },
+    {
+      "title": "Samsung Galaxy M22 6GB/128GB",
+      "rowId": `${prefix}sgm22`
+    }
+    ]
+    }],
+    listType: 1
+    }
+    pebz.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    break
+
+//══════════[ SAMSUNG ]══════════//
+
+case 'sgm13':
+    menu = `*SAMSUNG GALAXY M13 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 700.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 400.000 /Bulan
+_Cicilan 6 Bulan_`
+
+sgm13 = fs.readFileSync('./media/catalog/sgm13.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, sgm13, but)
+break
+
+case 'sgta7l':
+    menu = `*SAMSUNG GALAXY TAB A7 LITE 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 1.000.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 550.000 /Bulan
+_Cicilan 6 Bulan_`
+
+sgta7l = fs.readFileSync('./media/catalog/sgta7l.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, sgta7l, but)
+break
+
+case 'sga12':
+    menu = `*SAMSUNG GALAXY A12 6/128GB*
+
+PILIH METODE CICILAN
+Rp. 1.000.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 550.000 /Bulan
+_Cicilan 6 Bulan_`
+
+sga12 = fs.readFileSync('./media/catalog/sga12.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, sga12, but)
+break
+
+case 'sgm22':
+    menu = `*SAMSUNG  GALAXY M22 6GB/128GB*
+
+PILIH METODE CICILAN
+Rp. 1.200.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 610.000 /Bulan
+_Cicilan 6 Bulan_`
+
+sgm22 = fs.readFileSync('./media/catalog/sgm22.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, sgm22, but)
+break
+
+//══════════[ XIAOMI ]══════════//
+//══════════[ OPPO ]══════════//
+//══════════[ REALME ]══════════//
+//══════════[ VIVO ]══════════//
+//══════════[ LIST INFINIX ]══════════//
+
+case 'infinix':
+    listMsg = {
+    buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
+    footerText: tanggal,
+    description: `Halo Kak @${sender.split('@')[0]},
+Ini list harga Hp Infinix yang terbaru`,
+    sections: [
+    {
+    "title": `${wib} - ${ucapanWaktu} - ${pushname}`,
+    rows: [
+    {
+        "title": "Infinix Hot 10 Play 3GB/32GB",
+        "rowId": `${prefix}ih10p`
+    },
+    {
+        "title": "Infinix Note 10 6GB/64GB",
+        "rowId": `${prefix}in10`
+      },
+    {
+      "title": "Infinix Hot 11 Play 4GB/64GB",
+      "rowId": `${prefix}ih11p`
+    }
+    ]
+    }],
+    listType: 1
+    }
+    pebz.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    break
+
+//══════════[ INFINIX ]══════════//
+
+case 'ih10p':
+    menu = `*INFINIX HOT 10 PLAY 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 630.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 370.000 /Bulan
+_Cicilan 6 Bulan_`
+
+ih10p= fs.readFileSync('./media/catalog/ih10p.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, ih10p, but)
+break
+
+case 'in10':
+    menu = `*INFINIX NOTE 10 6GB/64GB NFC*
+
+PILIH METODE CICILAN
+Rp. 1.080.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 600.000 /Bulan
+_Cicilan 6 Bulan_`
+
+in10= fs.readFileSync('./media/catalog/in10.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, in10, but)
+break
+
+case 'ih11p':
+    menu = `*INFINIX HOT 11 PLAY 4GB/64GB*
+
+PILIH METODE CICILAN
+Rp. 710.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 3900.000 /Bulan
+_Cicilan 6 Bulan_`
+
+ih11p = fs.readFileSync('./media/catalog/ih11p.jpg')
+but = [
+  { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, ih11p, but)
+break
+
+//══════════[ ADVAN ]══════════//
+//══════════[ IPHONE ]══════════//
+//══════════[ NOKIA]══════════//
+//══════════[ HUAWEI  ]══════════//
+
 
 //══════════[ AC ]══════════//
 case 'ac':
@@ -781,7 +989,7 @@ Ini Daftar *Televisi* yang Ready`,
     
     
 //=========
-case 'proses':
+case 'bayar':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 menu = `_Orderan Sedang Di Proses Silakan Di Tunggu_
