@@ -1000,10 +1000,10 @@ _Pesanan Sedang Di Proses Harap Di Tunggu Ya Kak !!_`
 teks =
 `「 ${BotName} 」\n*${tanggal}*`
 but = [
-          { buttonId: `${prefix}payment`, buttonText: { displayText: 'ᴘᴀʏᴍᴇɴᴛ' }, type: 1 },
-          { buttonId: `${prefix}owner`, buttonText: { displayText: 'ᴏᴡɴᴇʀ' }, type: 1 }
+          { buttonId: `${prefix}bayar`, buttonText: { displayText: 'BAYAR' }, type: 1 },
+          { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER'}, type: 1 }
         ]
-        sendButImage(from, menunya, teks, but)
+        sendButImage(from, men, teks, but)
 break
 
 case 'done':
