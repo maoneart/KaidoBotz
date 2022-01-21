@@ -37,6 +37,7 @@ const fetch = require('node-fetch')
 const moment = require('moment-timezone')
 const ffmpeg = require('fluent-ffmpeg')
 const { removeBackgroundFromImageFile } = require('remove.bg')
+const hx = require('hxz-api')
 
 //══════════[ Lib ]══════════//
 
@@ -313,8 +314,30 @@ const isUrl = (url) => {
                         }
                       }
         const troli =  {key: { fromMe: false,remoteJid: "status@broadcast", participant: '0@s.whatsapp.net'}, message: {orderMessage: {itemCount: 2022, status: 200, thumbnail: gambar, surface: 200, message: `➥ Made By ${Miminnya}\n➥ Hallo ${pushname}`, orderTitle: 'K A I D O', sellerJid: '0@s.whatsapp.net'} } }              
+        
+        const fkontak = { 
+           key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `0@s.whatsapp.net` } : {}) }, message: { 'contactMessage': { 'displayName': `Hallo ${pushname}\n${ucapanWaktu}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${pushname},;;;\nFN:${pushname},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': gambar}}} 
 //══════════[ Storage ]══════════//
 
+        const sendStickerFromUrl = async(to, url) => {
+                var names = Date.now() / 10000;
+                var download = function (uri, filename, callback) {
+                    request.head(uri, function (err, res, body) {
+                        request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+                    });
+                };
+                download(url, './sticker' + names + '.png', async function () {
+                    console.log('selesai');
+                    let filess = './sticker' + names + '.png'
+                    let asw = './sticker' + names + '.webp'
+                    exec(`ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${asw}`, (err) => {
+                        let media = fs.readFileSync(asw)
+                        Dhani.sendMessage(to, media, MessageType.sticker,{quoted:mek})
+                        fs.unlinkSync(filess)
+                        fs.unlinkSync(asw)
+                    });
+                });
+            }
         const sendMediaURL = async(to, url, text="", mids=[]) =>{
                 if(mids.length > 0){
                     text = normalizeMention(to, text, mids)
@@ -344,7 +367,23 @@ const isUrl = (url) => {
                     fs.unlinkSync(filename)
                 });
             }  
-
+//=================( STICKER )=================//
+            const sticOwner = (hehe) => {
+              ano = fs.readFileSync('./media/sticker/owner.webp')
+              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              }
+            const sticWait = (hehe) => {
+              ano = fs.readFileSync('./media/sticker/wait.webp')
+              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              }
+            const sticAdmin = (hehe) => {
+              ano = fs.readFileSync('./media/sticker/admin.webp')
+              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              }
+            const sticBotAdmin = (hehe) => {
+              ano = fs.readFileSync('./media/sticker/botadmin.webp')
+              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              }
 //══════════[ Grup ]══════════//
 
 const hideTag = async function(from, text){
@@ -451,11 +490,11 @@ Ada yang bisa Kaido Bantu?`,
           "rowId": `${prefix}menucatalog`
         },
         {
-          "title": "MEDIA MENU",
+          "title": "Media Audio",
           "rowId": `${prefix}audiomenu`
         },
         {
-          "title": "DONATE BOT",
+          "title": "Donate Bot",
           "rowId": `${prefix}`
         }
         ]
@@ -465,6 +504,65 @@ Ada yang bisa Kaido Bantu?`,
         Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}})
         Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
         break
+
+//══════════[ Menu Master ]══════════//
+        case 'menucatalog':
+            menunya = `${ucapanWaktu} ${pushname}
+            
+『 *MEDIA MENU* 』
+々 _${prefix}smeme <replyimg>_
+々 _${prefix}textstic <addtext>_
+々 _${prefix}toimg <replysticker>_
+々 _${prefix}sticker <send/replyimg>_
+々 _${prefix}pmeme <replyimg+text|txt>_
+
+『 *FUN TIME* 』
+々 _${prefix}truth_
+々 _${prefix}dare_
+々 _${prefix}darkjokes_
+
+『 *DOWLOADER* 』
+々 _${prefix}play <query>_
+々 _${prefix}ytmp3 <link>_
+々 _${prefix}ytaudio <link>_
+々 _${prefix}ytmp4 <link>_
+々 _${prefix}tiktok <link>_
+々 _${prefix}pinterest <search>_
+
+『 *GAME MENU* 』
+々 _${prefix}next_
+
+『 *SEARCH MENU* 』
+々 _${prefix}next_
+
+『 *OWNER MENU* 』
+々 _${prefix}welcome <on/off>_
+々 _${prefix}closegc
+々 _${prefix}opengc
+々 _${prefix}BC <Text>`
+            var imgs = await Dhani.prepareMessage('0@c.us', gambar, image, { thumbnail: tamnel })
+            var imgCatalog = imgs.message.imageMessage
+            var ctlg = await Dhani.prepareMessageFromContent(from, {
+            "productMessage": {
+            "product": {
+            "productImage": imgCatalog,
+            "productId": "6730388940368865",
+            "title": `MENU MASTER`,
+            "description": menunya,
+            "footerText": `メKAIDOBOT`,
+            "currencyCode": "USD",
+            "priceAmount1000": "0",
+            "productImageCount": 1,
+            "firstImageId": 1,
+            "salePriceAmount1000": "0",
+            "retailerId": `Please Use prefix+command Example : ${prefix}sticker`,
+            "url": "https://www.instagram.com/maone_art/"
+            },
+            "businessOwnerJid": `${oNumber}@s.whatsapp.net`,
+            }
+            }, { quoted: fkontak, mimetype: 'image/jpeg' })
+            Dhani.relayWAMessage(ctlg)
+            break
 //══════════[ ABOUT ]══════════//
 case 'about':
 menunya =`Hallo *${pushname}* Selamat datang di MaoneArt Electronic kami menyediakan berbagai macam barang elektronik seperti:
@@ -888,15 +986,15 @@ Ini Daftar *Laptop* yang Ready`,
         "rowId": `${prefix}la`
     },
     {
-        "title": "lenovo",
+        "title": "Lenovo",
         "rowId": `${prefix}ll`
       },
     {
-      "title": "dell",
+      "title": "Dell",
       "rowId": `${prefix}ld`
     },
     {
-      "title": "acer",
+      "title": "Acer",
       "rowId": `${prefix}lac`
     }
     ]
@@ -1258,6 +1356,112 @@ but = [
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
 sendButImage(from, menu, fake, dana, but)
 break
+
+//══════════[ Sticker ]══════════//
+
+case 'sticker':case 'stiker':case 'stickergif':case 'stikergif':case 'sgif':case 's':
+if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+			const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+			const media = await Dhani.downloadAndSaveMediaMessage(encmedia)
+			ran = getRandom('.webp')
+			await ffmpeg(`./${media}`)
+			.input(media)
+			.on('start', function (cmd) {
+				console.log(`Started : ${cmd}`)
+				})
+				.on('error', function (err) {
+					console.log(`Error : ${err}`)
+					fs.unlinkSync(media)
+					reply('Eror')
+					})
+			.on('end', function () {
+				console.log('Finish')
+				Dhani.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
+				fs.unlinkSync(media)
+				fs.unlinkSync(ran)
+				})
+				.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+				.toFormat('webp')
+				.save(ran)
+				} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
+				const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+				const media = await Dhani.downloadAndSaveMediaMessage(encmedia)
+				ran = getRandom('.webp')
+				await ffmpeg(`./${media}`)
+				.inputFormat(media.split('.')[1])
+				.on('start', function (cmd) {
+					console.log(`Started : ${cmd}`)
+					})
+					.on('error', function (err) {
+						console.log(`Error : ${err}`)
+						fs.unlinkSync(media)
+						tipe = media.endsWith('.mp4') ? 'video' : 'gif'
+						reply(`âŒ Gagal, pada saat mengkonversi ${tipe} ke stiker`)
+						})
+						.on('end', function () {
+							console.log('Finish')
+							Dhani.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
+							fs.unlinkSync(media)
+							fs.unlinkSync(ran)
+							})
+							.addOutputOptions([`-vcodec`, `libwebp`, `-vf`, `scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
+							.toFormat('webp')
+							.save(ran)
+							} else  {
+								reply(`Kirim gambar dengan caption ${prefix}sticker atau tag gambar yang sudah dikirim\nDurasi sticker video 1-9 detik...`)
+							}
+					  break
+
+//══════════[ Photo Meme ]══════════//
+		case 'potomeme': case 'pmeme':
+           if (args.length < 1) return reply(`Kirim perintah *${prefix + command}* teks atas|teks bawah`)
+           if (!q.includes('|')) return reply(`Kirim perintah *${prefix + command}* teks atas|teks bawah`)
+           try {
+           if (!isQuotedImage && !isQuotedSticker) return reply(`REPLY GAMBAR ATAU STICKER!!`)
+           reply(mess.wait)
+           var teks1 = q.split('|')[0] ? q.split('|')[0] : ''
+           var teks2 = q.split('|')[1] ? q.split('|')[1] : ''
+           var imgbb = require('imgbb-uploader')
+           var enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+           var media = await Dhani.downloadAndSaveMediaMessage(enmedia)
+           var njay = await imgbb('520bd6f6209077d1777c2a4f20c509c2', media)
+           var resu = await getBuffer(`https://api.memegen.link/images/custom/${teks1}/${teks2}.png?background=${njay.display_url}`)
+           Dhani.sendMessage(from, resu, image, {quoted: troli})
+           fs.unlinkSync(media)
+           } catch (e) {
+           return reply(`${e}`)
+           console.log(e)
+           }
+           break   
+           
+          case 'smeme': case 'stickmeme': case 'sm': {
+           var top = q.split('|')[0] ? q.split('|')[0] : ''
+           var bottom = q.split('|')[1] ? q.split('|')[1] : ''
+           var imgbb = require('imgbb-uploader')
+           if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length > 0) {
+           ger = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+           owgi = await  Dhani.downloadAndSaveMediaMessage(ger)
+           anu = await imgbb("f0b190d67308d34811fab9c56fe8aba7", owgi)
+           tekks = `${anu.display_url}`
+           ranp = getRandom('.gif')
+           rano = getRandom('.webp')
+           anu1 = `https://api.memegen.link/images/custom/${top}/${bottom}.png?background=${tekks}`
+           sendStickerFromUrl(from, `${anu1}`)
+           } else {
+           reply('Gunakan foto!')
+           } 
+           }
+           break      
+
+//══════════[ Pinterest ]══════════//
+	case 'pinterest':
+         if(!q) return reply(`Namanya? Contohnya\n${prefix + command} naruto`)
+         let pin = await hx.pinterest(q)
+         let ac = pin[Math.floor(Math.random() * pin.length)]
+         let di = await getBuffer(ac)
+         sticWait(from)
+         await Dhani.sendMessage(from, di, image, { quoted: mek })
+         break
 
 //══════════[ Fitur Owner ]══════════//
 
