@@ -835,7 +835,59 @@ break
 //══════════[ XIAOMI ]══════════//
 //══════════[ OPPO ]══════════//
 //══════════[ REALME ]══════════//
-//══════════[ VIVO ]══════════//
+//══════════[ LIST VIVO ]══════════//
+case 'vivo':
+    listMsg = {
+    buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
+    footerText: tanggal,
+    description: `Halo Kak @${sender.split('@')[0]},
+Ini list harga Hp VIVO yang terbaru`,
+    sections: [
+    {
+    "title": `${time} - ${ucapanWaktu} - ${pushname}`,
+    rows: [
+    {
+        "title": "Vivo Y33s 8GB/128GB",
+        "rowId": `${prefix}vy33s`
+    },
+    {
+        "title": "Samsung Galaxy Tab A7 Lite 3GB/32GB",
+        "rowId": `${prefix}sgta7l`
+      },
+    {
+      "title": "Samsung Galaxy A12 6GB/128GB",
+      "rowId": `${prefix}sga12`
+    },
+    {
+      "title": "Samsung Galaxy M22 6GB/128GB",
+      "rowId": `${prefix}sgm22`
+    }
+    ]
+    }],
+    listType: 1
+    }
+    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    break
+
+//══════════[ SAMSUNG ]══════════//
+
+case 'vy33s':
+    menu = `*VIVO Y33s 8GB/128GB*
+
+PILIH METODE CICILAN
+Rp. 1.320.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 740.000 /Bulan
+_Cicilan 6 Bulan_`
+
+vy33s = fs.readFileSync('./media/catalog/vy33s.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, sgm13, but)
+break
 //══════════[ LIST INFINIX ]══════════//
 
 case 'infinix':
