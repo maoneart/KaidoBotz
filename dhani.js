@@ -886,7 +886,7 @@ but = [
   { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
 ]
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
-sendButImage(from, menu, fake, sgm13, but)
+sendButImage(from, menu, fake, vy33s, but)
 break
 //══════════[ LIST INFINIX ]══════════//
 
