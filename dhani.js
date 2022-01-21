@@ -851,8 +851,8 @@ Ini list harga Hp VIVO yang terbaru`,
         "rowId": `${prefix}vy33s`
     },
     {
-        "title": "Samsung Galaxy Tab A7 Lite 3GB/32GB",
-        "rowId": `${prefix}sgta7l`
+        "title": "Vivo Y15s 3GB/32GB",
+        "rowId": `${prefix} y15s`
       },
     {
       "title": "Samsung Galaxy A12 6GB/128GB",
@@ -888,6 +888,25 @@ but = [
 //  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
 sendButImage(from, menu, fake, vy33s, but)
 break
+
+case 'vy15s':
+    menu = `*VIVO Y15s 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 8300.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 460.000 /Bulan
+_Cicilan 6 Bulan_`
+
+vy15s = fs.readFileSync('./media/catalog/vy15s.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, vy15s, but)
+break
+
 //══════════[ LIST INFINIX ]══════════//
 
 case 'infinix':
