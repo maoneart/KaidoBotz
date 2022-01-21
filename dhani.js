@@ -730,7 +730,7 @@ case 'samsung':
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: tanggal,
     description: `Halo Kak @${sender.split('@')[0]},
-Ini list harga Hp Samsung yang terbaru`,
+Ini list harga Hp Samsung yang Ready Stock`,
     sections: [
     {
     "title": `${time} - ${ucapanWaktu} - ${pushname}`,
@@ -833,7 +833,113 @@ sendButImage(from, menu, fake, sgm22, but)
 break
 
 //══════════[ XIAOMI ]══════════//
+//══════════[ LIST OPPO ]══════════//
+case 'oppo':
+    listMsg = {
+    buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
+    footerText: tanggal,
+    description: `Halo Kak @${sender.split('@')[0]},
+Ini list harga Hp OPPO yang Ready Stock`,
+    sections: [
+    {
+    "title": `${time} - ${ucapanWaktu} - ${pushname}`,
+    rows: [
+    {
+        "title": "Oppo A16 3GB/32GB",
+        "rowId": `${prefix}oa16`
+    },
+    {
+        "title": "Oppo A16 4GB/64GB",
+        "rowId": `${prefix}oa164`
+      },
+      {
+        "title": "Oppo A53 4GB/128GB",
+        "rowId": `${prefix}oa53`
+      },
+    {
+      "title": "Oppo A54 4GB/64GB",
+      "rowId": `${prefix}oa54`
+    }
+    ]
+    }],
+    listType: 1
+    }
+    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    break
+
 //══════════[ OPPO ]══════════//
+
+case 'oa16':
+    menu = `*OPPO A16 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 840.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 470.000 /Bulan
+_Cicilan 6 Bulan_`
+
+oa16 =  fs.readFileSync('./media/catalog/oa16.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, oa16, but)
+break
+
+case 'oa164':
+    menu = `*OPPO A16 4GB/64GB*
+
+PILIH METODE CICILAN
+Rp. 1.100.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 570.000 /Bulan
+_Cicilan 6 Bulan_`
+
+oa164 =  fs.readFileSync('./media/catalog/oa164.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, oa164, but)
+break
+
+case 'oa54':
+    menu = `*OPPO A54 4GB/64GB*
+
+PILIH METODE CICILAN
+Rp. 1.100.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 570.000 /Bulan
+_Cicilan 6 Bulan_`
+
+oa54 =  fs.readFileSync('./media/catalog/oa54.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, oa54, but)
+break
+
+case 'oa53':
+    menu = `*OPPO A53 4GB1284GB*
+
+PILIH METODE CICILAN
+Rp. 1.300.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 600.000 /Bulan
+_Cicilan 6 Bulan_`
+
+oa53 =  fs.readFileSync('./media/catalog/oa53.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, oa53, but)
+break
 //══════════[ REALME ]══════════//
 //══════════[ LIST VIVO ]══════════//
 case 'vivo':
@@ -841,7 +947,7 @@ case 'vivo':
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: tanggal,
     description: `Halo Kak @${sender.split('@')[0]},
-Ini list harga Hp VIVO yang terbaru`,
+Ini list harga Hp VIVO yang Ready Stock`,
     sections: [
     {
     "title": `${time} - ${ucapanWaktu} - ${pushname}`,
@@ -851,16 +957,16 @@ Ini list harga Hp VIVO yang terbaru`,
         "rowId": `${prefix}vy33s`
     },
     {
-        "title": "Vivo Y15s 3GB/32GB",
-        "rowId": `${prefix} y15s`
-      },
-    {
-      "title": "Samsung Galaxy A12 6GB/128GB",
-      "rowId": `${prefix}sga12`
+        "title": "Vivo 15s 3GB/32GB",
+        "rowId": `${prefix}vy15s`
     },
     {
-      "title": "Samsung Galaxy M22 6GB/128GB",
-      "rowId": `${prefix}sgm22`
+        "title": "Vivo Y12s 3GB/32GB",
+        "rowId": `${prefix}vy12s`
+    },
+    {
+      "title": "Vivo Y21 4GB/64GB",
+      "rowId": `${prefix}vy21`
     }
     ]
     }],
@@ -869,7 +975,7 @@ Ini list harga Hp VIVO yang terbaru`,
     Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
-//══════════[ SAMSUNG ]══════════//
+//══════════[ VIVO  ]══════════//
 
 case 'vy33s':
     menu = `*VIVO Y33s 8GB/128GB*
@@ -893,7 +999,7 @@ case 'vy15s':
     menu = `*VIVO Y15s 3GB/32GB*
 
 PILIH METODE CICILAN
-Rp. 8300.000 /Bulan
+Rp. 830.000 /Bulan
 _Cicilan 3 Bulan_
 Rp. 460.000 /Bulan
 _Cicilan 6 Bulan_`
@@ -907,6 +1013,42 @@ but = [
 sendButImage(from, menu, fake, vy15s, but)
 break
 
+case 'vy12s':
+    menu = `*VIVO Y12s 3GB/32GB*
+
+PILIH METODE CICILAN
+Rp. 780.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 450.000 /Bulan
+_Cicilan 6 Bulan_`
+
+vy12s = fs.readFileSync('./media/catalog/vy12s.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, vy12s, but)
+break
+
+case 'vy21':
+    menu = `*VIVO 21 4GB/64GB*
+
+PILIH METODE CICILAN
+Rp. 970.000 /Bulan
+_Cicilan 3 Bulan_
+Rp. 540.000 /Bulan
+_Cicilan 6 Bulan_`
+
+vy21 = fs.readFileSync('./media/catalog/vy21.jpg')
+but = [
+  { buttonId: `${prefix}order`, buttonText: { displayText: 'ORDER' }, type: 1 },
+  { buttonId: `${prefix}owner`, buttonText: { displayText: 'OWNER' }, type: 1 }
+]
+//  sendButLocation(from, menu, fake, tamnel, but, {quoted: mek})
+sendButImage(from, menu, fake, vy21, but)
+break
+
 //══════════[ LIST INFINIX ]══════════//
 
 case 'infinix':
@@ -914,7 +1056,7 @@ case 'infinix':
     buttonText: '𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨',
     footerText: tanggal,
     description: `Halo Kak @${sender.split('@')[0]},
-Ini list harga Hp Infinix yang terbaru`,
+Ini list harga Hp Infinix yang Ready Stock`,
     sections: [
     {
     "title": `${time} - ${ucapanWaktu} - ${pushname}`,
