@@ -1689,10 +1689,10 @@ bo = args.join(" ")
 sticWait(from)
 gett = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
 yt1 =`*Judul :* ${gett.title}\n\n*Author :* ${gett.channel}\n*Dipublikasikan :* ${gett.published}\n*Views :*\n${gett.views}`
-yt2 =`Silahkan Pilih Type Media Di Bawah`
+yt2 =`${BotName}`
 ytg = fs.readFileSync('./media/logo.jpg')
 but = [
-{ buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
+//{ buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
 { buttonId: `${prefix}ply3 ${args.join(" ")}`, buttonText: { displayText: '️𝘮𝘶𝘴𝘪𝘬' }, type: 1 }
 ]
 sendButImage(from, yt1, yt2, ytg, but)
