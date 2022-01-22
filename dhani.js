@@ -376,6 +376,10 @@ const isUrl = (url) => {
               ano = fs.readFileSync('./media/sticker/wait.webp')
               Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
+              const sticLoad = (hehe) => {
+              ano = fs.readFileSync('./media/sticker/loading.webp')
+              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              }
             const sticAdmin = (hehe) => {
               ano = fs.readFileSync('./media/sticker/admin.webp')
               Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
@@ -1675,6 +1679,44 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
          sticWait(from)
          await Dhani.sendMessage(from, di, image, { quoted: mek })
          break
+         
+         case 'ytplay':
+//if (!isPremier)return reply(mess.premier)
+//if (isBanned)return sticBanned(from)
+if (args.length ==0)return reply('Judul nya Mana Kak?')
+bo = args.join(" ")
+sticWait(from)
+gett = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
+yt1 =`*Judul :* ${gett.title}\n\n*Author :* ${gett.channel}\n*Dipublikasikan :* ${gett.published}\n*Views :*\n${gett.views}`
+yt2 =`Silahkan Pilih Type Media Di Bawah`
+ytg = fs.readFileSync('./media/logo.jpg')
+but = [
+{ buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
+{ buttonId: `${prefix}ply3 ${args.join(" ")}`, buttonText: { displayText: '️𝘮𝘶𝘴𝘪𝘬' }, type: 1 }
+]
+sendButImage(from, yt1, yt2, ytg, but)
+break
+
+case 'ply4':
+case 'playmp4':
+//if (!isPremier)return reply(mess.premier)
+//if (isBanned)return sticBanned(from)
+bo = args.join(" ")
+sticLoad(from)
+ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp4?query=${bo}`)
+p4 = await getBuffer(ini.url_video)
+Dheni.sendMessage(from, p4, video)
+break
+case 'ply3':
+case 'playmp3':
+//if (!isPremier)return reply(mess.premier)
+//if (isBanned)return sticBanned(from)
+bo = args.join(" ")
+sticLoad(from)
+ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
+p3 = await getBuffer(ini.url)
+Dhani.sendMessage(from, p3, audio)
+break
 
 //══════════[ Fitur Owner ]══════════//
 
