@@ -1680,6 +1680,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
          await Dhani.sendMessage(from, di, image, { quoted: mek })
          break
          
+         case 'play':
          case 'ytplay':
 //if (!isPremier)return reply(mess.premier)
 //if (isBanned)return sticBanned(from)
