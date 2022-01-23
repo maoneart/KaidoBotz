@@ -52,7 +52,7 @@ autocomposing = false
 autorecording = false
 //----
 
-const { Miminnya, NameStore, BotName, fake, oNumber, IG, lolkey, Gopay, Dana, Pulsa} = require('./setting.json')
+const { Miminnya, NameStore, BotName, fake, oNumber, IG, BMKG, lolkey, Gopay, Dana, Pulsa} = require('./setting.json')
 gambar = fs.readFileSync('./media/logo.jpg')
 tamnel = fs.readFileSync('./media/logotoko.jpg')
 td = fs.readFileSync('./media/masjid.jpg')
@@ -1672,16 +1672,24 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
 
 //══════════[ Pinterest ]══════════//
 	case 'pinterest':
+	     sticWait(from)
          if(!q) return reply(`Namanya? Contohnya\n${prefix + command} naruto`)
          let pin = await hx.pinterest(q)
          let ac = pin[Math.floor(Math.random() * pin.length)]
          let di = await getBuffer(ac)
-         sticWait(from)
-         await Dhani.sendMessage(from, di, image, { quoted: mek })
-         break
-         
-         case 'play':
-         case 'ytplay':
+         //sticWait(from)
+     //    await Dhani.sendMessage(from, di, image, { quoted: mek })
+       yt1=`Kelik Next Untuk Gambar Selanjutnya`
+  yt2=`${BotName}`
+         but = [
+{ buttonId: `.pinterest ${q}`, buttonText: { displayText: '️Next' }, type: 1 }
+]
+sendButImage(from, yt1, yt2, di, but)
+break
+
+//══════════[ Downloader ]══════════//       
+case 'play':
+case 'ytplay':
 //if (!isPremier)return reply(mess.premier)
 //if (isBanned)return sticBanned(from)
 if (args.length ==0)return reply('Judul nya Mana Kak?')
@@ -1692,7 +1700,7 @@ yt1 =`*Judul :* ${gett.title}\n\n*Author :* ${gett.channel}\n*Dipublikasikan :* 
 yt2 =`${BotName}`
 ytg = fs.readFileSync('./media/logo.jpg')
 but = [
-//{ buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
+{ buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
 { buttonId: `${prefix}ply3 ${args.join(" ")}`, buttonText: { displayText: '️𝘮𝘶𝘴𝘪𝘬' }, type: 1 }
 ]
 sendButImage(from, yt1, yt2, ytg, but)
@@ -1705,9 +1713,10 @@ case 'playmp4':
 bo = args.join(" ")
 sticLoad(from)
 ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp4?query=${bo}`)
-p4 = await getBuffer(ini.url_video)
+p4 = await getBuffer(ini.url)
 Dheni.sendMessage(from, p4, video)
 break
+
 case 'ply3':
 case 'playmp3':
 //if (!isPremier)return reply(mess.premier)
@@ -1719,6 +1728,44 @@ p3 = await getBuffer(ini.url)
 Dhani.sendMessage(from, p3, audio)
 break
 
+//══════════[ Truth or Dare]══════════//
+case 'dare':
+sticWait(from)
+td = fs.readFileSync('./media/logo.jpg')
+bt = await fetchJson(`https://api-yogipw.herokuapp.com/api/fun/dare`)
+dr1 =`*${bt.dare}*`
+dr2 =`Klik Di Next Untuk Melanjutkan`
+but = [
+{ buttonId: `${prefix}truth`, buttonText: { displayText: '️Truth' }, type: 1 },
+{ buttonId: `${prefix + command}`, buttonText: { displayText: '️Next' }, type: 1 }
+]
+sendButImage(from, dr1, dr2, td, but)
+break
+
+case 'truth':
+sticWait(from)
+td = fs.readFileSync('./media/logo.jpg')
+bt = await fetchJson(`https://api-yogipw.herokuapp.com/api/fun/truth`)
+dr1 =`*${bt.truth}*`
+dr2 =`Klik Di Next Untuk Melanjutkan`
+but = [
+{ buttonId: `${prefix}dare`, buttonText: { displayText: '️Dare' }, type: 1 },
+{ buttonId: `${prefix + command}`, buttonText: { displayText: '️Next' }, type: 1 }
+]
+sendButImage(from, dr1, dr2, td, but)
+break
+
+case 'gempa':
+sticWait(from)
+td = fs.readFileSync('./media/bmkg.jpg')
+bt = await fetchJson(`https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`)
+dr1 =`*「 I N F O G E M P A 」*\n\nTanggal : ${bt.Infogempa.gempa.Tanggal}\nJam : ${bt.Infogempa.gempa.Jam}\nGetaran : ${bt.Infogempa.gempa.Magnitude}\nWilayah : ${bt.Infogempa.gempa.Wilayah}\nPotensi : ${bt.Infogempa.gempa.Potensi}`
+dr2 =`Klik Di Next Untuk Melanjutkan`
+but = [
+{ buttonId: `${BMKG}`, buttonText: { displayText: '️Info Lebih Lanjut' }, type: 1 }
+]
+sendButImage(from, dr1, dr2, td, but)
+break
 //══════════[ Fitur Owner ]══════════//
 
 case 'owner':
@@ -2006,8 +2053,8 @@ if (isQuotedImage) {
 let encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
 let media = await Dhani.downloadMediaMessage(encmedia)
 Dhani.updateProfilePicture(from, media)
-.then((res) => fakeyt(jsonformat(res)))
-.catch((err) => fakeyt(jsonformat(err)))
+//.then((res) => fakeyt(jsonformat(res)))
+//.catch((err) => fakeyt(jsonformat(err)))
 } else {
 fakeyt(`Kirim atau tag gambar dengan caption ${prefix}setppgrup`)
 }
