@@ -68,7 +68,7 @@ const _antivirtex = JSON.parse(fs.readFileSync('./database/antivirtex.json'))
 
 //══════════[ Module Export ]══════════//
 		
-module.exports = Dhani = async (Dhani, mek, _welkom) => {
+module.exports = Kaido = async (Kaido, mek, _welkom) => {
 	try {
         if (!mek.hasNewMessage) return
         mek = mek.messages.all()[0]
@@ -96,12 +96,12 @@ module.exports = Dhani = async (Dhani, mek, _welkom) => {
 		const q = args.join(' ')
 		const Verived = "0@s.whatsapp.net"
 		const txt = mek.message.conversation
-		const botNumber = Dhani.user.jid
+		const botNumber = Kaido.user.jid
 		const ownerNumber = [`${oNumber}@s.whatsapp.net`]//, `6281333603591@s.whatsapp.net`]
 		const isGroup = from.endsWith('@g.us')
 		let sender = isGroup ? mek.participant : mek.key.remoteJid
-		let senderr = mek.key.fromMe ? Dhani.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
-		const groupMetadata = isGroup ? await Dhani.groupMetadata(from) : ''.toString
+		let senderr = mek.key.fromMe ? Kaido.user.jid : mek.key.remoteJid.endsWith('@g.us') ? mek.participant : mek.key.remoteJid
+		const groupMetadata = isGroup ? await Kaido.groupMetadata(from) : ''.toString
 		const groupName = isGroup ? groupMetadata.subject : ''
 		const groupId = isGroup ? groupMetadata.jid : ''
 		const groupMembers = isGroup ? groupMetadata.participants : ''
@@ -112,15 +112,15 @@ module.exports = Dhani = async (Dhani, mek, _welkom) => {
 		const isGroupAdmins = groupAdmins.includes(sender) || false
         const senderNumber = sender.split("@")[0]
         const hour_now = moment().format('HH:mm:ss')
-		const conts = mek.key.fromMe ? Dhani.user.jid : Dhani.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-        const pushname = mek.key.fromMe ? Dhani.user.name : conts.notify || conts.vname || conts.name || '-'    
+		const conts = mek.key.fromMe ? Kaido.user.jid : Kaido.contacts[sender] || { notify: jid.replace(/@.+/, '') }
+        const pushname = mek.key.fromMe ? Kaido.user.name : conts.notify || conts.vname || conts.name || '-'    
     
 		const isAntiLink = isGroup ? _antilink.includes(from) : false
 		const isWelkom = isGroup ? _welkom.includes(from) : false
 		const isAntiVirtex = isGroup ? _antivirtex.includes(from) : false
 		const isOwner = ownerNumber.includes(sender)
 		const isMybot = isOwner || mek.key.fromMe
-		let bio_nya = await Dhani.getStatus(sender)
+		let bio_nya = await Kaido.getStatus(sender)
 		try {
 			bio_user = `${bio_nya.status}`
 		} catch {
@@ -154,7 +154,7 @@ const sendButton = async (from, context, fortext, but, mek) => {
                 buttons: but,
                 headerType: 1
             }
-            Dhani.sendMessage(from, buttonMessages, buttonsMessage, {
+            Kaido.sendMessage(from, buttonMessages, buttonsMessage, {
                 quoted: mek
             })
         }
@@ -166,12 +166,12 @@ footerText: desc1,
 buttons: but,
 headerType: 1
 }
-Dhani.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
+Kaido.sendMessage(id, buttonMessage, MessageType.buttonsMessage, options)
 }
 //BUTTON IMAGE//
 const sendButImage = async(id, text1, desc1, gam1, but = [], options = {}) => {
 kma = gam1
-mhan = await Dhani.prepareMessage(from, kma, image)
+mhan = await Kaido.prepareMessage(from, kma, image)
 const buttonMessages = {
 imageMessage: mhan.message.imageMessage,
 contentText: text1,
@@ -179,12 +179,12 @@ footerText: desc1,
 buttons: but,
 headerType: 4
 }
-Dhani.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 //BUTTON VIDEO//
 const sendButVideo = async(id, text1, desc1, vid1, but = [], options = {}) => {
 kma = vid1
-mhan = await Dhani.prepareMessage(from, kma, video)
+mhan = await Kaido.prepareMessage(from, kma, video)
 const buttonMessages = {
 videoMessage: mhan.message.videoMessage,
 contentText: text1,
@@ -192,12 +192,12 @@ footerText: desc1,
 buttons: but,
 headerType: 5
 }
-Dhani.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 //BUTTON LOCATION//
 const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
 kma = gam1
-mhan = await Dhani.prepareMessage(from, kma, location)
+mhan = await Kaido.prepareMessage(from, kma, location)
 const buttonMessages = {
 locationMessage: mhan.message.locationMessage,
 contentText: text1,
@@ -205,23 +205,23 @@ footerText: desc1,
 buttons: but,
 headerType: 6
 }
-Dhani.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 
 //══════════[ Fake ]══════════//
 
         const listmsg = (from, title, desc, list) => { // ngeread nya pake rowsId, jadi command nya ga keliatan
-            let po = Dhani.prepareMessageFromContent(from, {"listMessage": {"title": title,"description": desc,"buttonText": "𝐌𝐄𝐍𝐔","footerText": `${tanggal}`,"listType": "SINGLE_SELECT","sections": list}}, {})
-            return Dhani.relayWAMessage(po, {waitForAck: true})
+            let po = Kaido.prepareMessageFromContent(from, {"listMessage": {"title": title,"description": desc,"buttonText": "𝐌𝐄𝐍𝐔","footerText": `${tanggal}`,"listType": "SINGLE_SELECT","sections": list}}, {})
+            return Kaido.relayWAMessage(po, {waitForAck: true})
         }
 const reply = (teks) => {
-Dhani.sendMessage(from, teks, text, {quoted:mek})
+Kaido.sendMessage(from, teks, text, {quoted:mek})
 }
 const sendMess = (hehe, teks) => {
-Dhani.sendMessage(hehe, teks, text)
+Kaido.sendMessage(hehe, teks, text)
 }
 const fakeyt = (teks) => {
-Dhani.sendMessage(from, teks, text,{contextInfo :{text: 'hi',
+Kaido.sendMessage(from, teks, text,{contextInfo :{text: 'hi',
 "forwardingScore": 1000000000,
 isForwarded: false,
 sendEphemeral: false,
@@ -239,13 +239,13 @@ const isUrl = (url) => {
     return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%.+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&/=]*)/, 'gi'))
         }
         const mentions = (teks, memberr, id) => {
-            (id == null || id == undefined || id == false) ? Dhani.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : Dhani.sendMessage(from, teks.trim(), extendedText, { quoted: ftrol, contextInfo: { "mentionedJid": memberr } })
+            (id == null || id == undefined || id == false) ? Kaido.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : Kaido.sendMessage(from, teks.trim(), extendedText, { quoted: ftrol, contextInfo: { "mentionedJid": memberr } })
         }
         const costum = (pesan, tipe, target, target2) => {
-			Dhani.sendMessage(from, pesan, tipe, { quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` } } })
+			Kaido.sendMessage(from, pesan, tipe, { quoted: { key: { fromMe: false, participant: `${target}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target2}` } } })
 		}
         const fakestatus = (teks) => {
-            Dhani.sendMessage(from, teks, text, {
+            Kaido.sendMessage(from, teks, text, {
                 quoted: {
                     key: {
                         fromMe: false,
@@ -264,7 +264,7 @@ const isUrl = (url) => {
                             "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
                             "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
                             "mediaKeyTimestamp": "1610993486",
-                            "jpegThumbnail": fs.readFileSync('./media/dhani.jpg'),
+                            "jpegThumbnail": fs.readFileSync('./media/kaido.jpg'),
                             "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
                         }
                     }
@@ -272,7 +272,7 @@ const isUrl = (url) => {
             })
         }
         const fakegroup = (teks) => {
-            Dhani.sendMessage(from, teks, text, {
+            Kaido.sendMessage(from, teks, text, {
                 quoted: {
                     key: {
                         fromMe: false,
@@ -291,7 +291,7 @@ const isUrl = (url) => {
                             "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
                             "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
                             "mediaKeyTimestamp": "1610993486",
-                            "jpegThumbnail": fs.readFileSync('./media/dhani.jpg'),
+                            "jpegThumbnail": fs.readFileSync('./media/kaido.jpg'),
                             "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
                         }
                     }
@@ -333,7 +333,7 @@ const isUrl = (url) => {
                     let asw = './sticker' + names + '.webp'
                     exec(`ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${asw}`, (err) => {
                         let media = fs.readFileSync(asw)
-                        Dhani.sendMessage(to, media, MessageType.sticker,{quoted:mek})
+                        Kaido.sendMessage(to, media, MessageType.sticker,{quoted:mek})
                         fs.unlinkSync(filess)
                         fs.unlinkSync(asw)
                     });
@@ -363,7 +363,7 @@ const isUrl = (url) => {
                     if(mime.split("/")[0] === "audio"){
                         mime = Mimetype.mp4Audio
                     }
-                    Dhani.sendMessage(to, media, type, { quoted: ftrol, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
+                    Kaido.sendMessage(to, media, type, { quoted: ftrol, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
                     
                     fs.unlinkSync(filename)
                 });
@@ -371,34 +371,34 @@ const isUrl = (url) => {
 //=================( STICKER )=================//
             const sticOwner = (hehe) => {
               ano = fs.readFileSync('./media/sticker/owner.webp')
-              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              Kaido.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
             const sticWait = (hehe) => {
               ano = fs.readFileSync('./media/sticker/wait.webp')
-              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              Kaido.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
               const sticLoad = (hehe) => {
               ano = fs.readFileSync('./media/sticker/loading.webp')
-              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              Kaido.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
             const sticAdmin = (hehe) => {
               ano = fs.readFileSync('./media/sticker/admin.webp')
-              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              Kaido.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
             const sticBotAdmin = (hehe) => {
               ano = fs.readFileSync('./media/sticker/botadmin.webp')
-              Dhani.sendMessage(hehe, ano, sticker, { quoted: mek})
+              Kaido.sendMessage(hehe, ano, sticker, { quoted: mek})
               }
 //══════════[ Grup ]══════════//
 
 const hideTag = async function(from, text){
-           let anu = await Dhani.groupMetadata(from)
+           let anu = await Kaido.groupMetadata(from)
            let members = anu.participants
            let ane = []
            for (let i of members){
            ane.push(i.jid)
 }
-           Dhani.sendMessage(from, {text:text, jpegThumbnail:fs.readFileSync('media/dhani.jpg')}, 'extendedTextMessage', {contextInfo: {"mentionedJid": ane}})
+           Kaido.sendMessage(from, {text:text, jpegThumbnail:fs.readFileSync('media/kaido.jpg')}, 'extendedTextMessage', {contextInfo: {"mentionedJid": ane}})
 }
 
 //══════════[ Antilink & Antivirtex ]══════════//
@@ -410,7 +410,7 @@ if (isGroupAdmins) return
 var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 fakeyt(` *「 GROUP LINK DETECTOR 」*\nKamu mengirimkan link grup chat, maaf kamu di kick dari grup`)
 setTimeout(() => {
-Dhani.groupRemove(from, [kic]).catch((e) => { fakeyt(`BOT HARUS JADI ADMIN`) })
+Kaido.groupRemove(from, [kic]).catch((e) => { fakeyt(`BOT HARUS JADI ADMIN`) })
 }, 0)
 }
 
@@ -421,17 +421,17 @@ if (isGroupAdmins) return
 fakeyt('Tandai telah dibaca\n'.repeat(300))
 fakeyt(`「 *VIRTEX DETECTOR* 」\n\nKamu mengirimkan virtex, maaf kamu di kick dari group`)
 console.log(color('[KICK]', 'red'), color('Received a virus text!', 'yellow'))
-Dhani.groupRemove(from, [sender])
+Kaido.groupRemove(from, [sender])
 }     
 
 //══════════[ Waktu Dll ]══════════//
 
 if (autoread){
-Dhani.chatRead(from, "read")
+Kaido.chatRead(from, "read")
 } else if (autocomposing) {
-Dhani.updatePresence(from, Presence.composing)
+Kaido.updatePresence(from, Presence.composing)
 } else if (autorecording) {
-Dhani.updatePresence(from, Presence.recording)
+Kaido.updatePresence(from, Presence.recording)
 }
 
 const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')
@@ -506,8 +506,8 @@ Ada yang bisa Kaido Bantu?`,
         }],
         listType: 1
         }
-        Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}})
-        Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+        Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}})
+        Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
         break
 
 //══════════[ Menu Master ]══════════//
@@ -545,9 +545,9 @@ Ada yang bisa Kaido Bantu?`,
 々 _${prefix}closegc
 々 _${prefix}opengc
 々 _${prefix}BC <Text>`
-            var imgs = await Dhani.prepareMessage('0@c.us', gambar, image, { thumbnail: tamnel })
+            var imgs = await Kaido.prepareMessage('0@c.us', gambar, image, { thumbnail: tamnel })
             var imgCatalog = imgs.message.imageMessage
-            var ctlg = await Dhani.prepareMessageFromContent(from, {
+            var ctlg = await Kaido.prepareMessageFromContent(from, {
             "productMessage": {
             "product": {
             "productImage": imgCatalog,
@@ -566,7 +566,7 @@ Ada yang bisa Kaido Bantu?`,
             "businessOwnerJid": `${oNumber}@s.whatsapp.net`,
             }
             }, { quoted: fkontak, mimetype: 'image/jpeg' })
-            Dhani.relayWAMessage(ctlg)
+            Kaido.relayWAMessage(ctlg)
             break
 //══════════[ ABOUT ]══════════//
 case 'about':
@@ -627,8 +627,8 @@ Silahkan cari barang yang anda butuhkan`,
         }],
         listType: 1
         }
-        Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-        Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+        Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+        Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
         break
 //══════════[ MESIN CUCI ]══════════//
         case 'mc':
@@ -666,8 +666,8 @@ Ini Daftar *Mesin Cuci* yang Ready`,
         }],
         listType: 1
         }
-        Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-        Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+        Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+        Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
         break
 
 //══════════[ HAND PHONE ]══════════//
@@ -726,8 +726,8 @@ Ini Daftar *Hand Phone* yang Ready`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
 //══════════[ LIST SAMSUNG ]══════════//
 case 'samsung':
@@ -760,7 +760,7 @@ Ini list harga Hp Samsung yang Ready Stock`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ SAMSUNG ]══════════//
@@ -869,7 +869,7 @@ Ini list harga Hp OPPO yang Ready Stock`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ OPPO ]══════════//
@@ -977,7 +977,7 @@ Ini list harga Hp VIVO yang Ready Stock`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ VIVO  ]══════════//
@@ -1082,7 +1082,7 @@ Ini list harga Hp Infinix yang Ready Stock`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]},quoted:troli})
     break
 
 //══════════[ INFINIX ]══════════//
@@ -1183,8 +1183,8 @@ Ini Daftar *AC* yang Ready`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break   
     
 //══════════[ LAPTOP ]══════════//
@@ -1219,8 +1219,8 @@ Ini Daftar *Laptop* yang Ready`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
 
 //══════════[ KULKAS ]══════════//
@@ -1259,8 +1259,8 @@ Ini Daftar *Kulkas* yang Ready`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
     
 //══════════[ TELEVISI ]══════════//
@@ -1299,8 +1299,8 @@ Ini Daftar *Televisi* yang Ready`,
     }],
     listType: 1
     }
-    Dhani.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
-    Dhani.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
+    Kaido.sendMessage(from, listMsg, MessageType.listMessage, {contextInfo: { mentionedJid: [sender]}, quoted: troli})
+    Kaido.sendMessage(from, kaido, MessageType.audio,{quoted:mek, mimetype:'audio/mp4', ptt: true} )
     break
     
     
@@ -1351,7 +1351,7 @@ teks =`*Pastikan Format Benar !!*
 *Terima kasih*
 
 ${tanggal}`
-Dhani.sendMessage(from, { contentText: `${menu}`, footerText: `${teks}`, buttons: [{ buttonId: `${prefix}payment`, buttonText: { displayText: 'ʙᴀʏᴀʀ' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'ᴏᴡɴᴇʀ' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: gambar, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
+Kaido.sendMessage(from, { contentText: `${menu}`, footerText: `${teks}`, buttons: [{ buttonId: `${prefix}payment`, buttonText: { displayText: 'ʙᴀʏᴀʀ' }, type: 1 },{ buttonId: `${prefix}owner`, buttonText: { displayText: 'ᴏᴡɴᴇʀ' }, type: 1 } ], headerType: 'LOCATION', locationMessage: { degreesLatitude: '', degreesLongitude: '', jpegThumbnail: gambar, contextInfo: {mentionedJid: [sender]}}}, 'buttonsMessage')
 break
 
 case 'dmff':
@@ -1580,7 +1580,7 @@ break
 case 'sticker':case 'stiker':case 'stickergif':case 'stikergif':case 'sgif':case 's':
 if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 			const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-			const media = await Dhani.downloadAndSaveMediaMessage(encmedia)
+			const media = await Kaido.downloadAndSaveMediaMessage(encmedia)
 			ran = getRandom('.webp')
 			await ffmpeg(`./${media}`)
 			.input(media)
@@ -1594,7 +1594,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
 					})
 			.on('end', function () {
 				console.log('Finish')
-				Dhani.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
+				Kaido.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
 				fs.unlinkSync(media)
 				fs.unlinkSync(ran)
 				})
@@ -1603,7 +1603,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
 				.save(ran)
 				} else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
 				const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-				const media = await Dhani.downloadAndSaveMediaMessage(encmedia)
+				const media = await Kaido.downloadAndSaveMediaMessage(encmedia)
 				ran = getRandom('.webp')
 				await ffmpeg(`./${media}`)
 				.inputFormat(media.split('.')[1])
@@ -1618,7 +1618,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
 						})
 						.on('end', function () {
 							console.log('Finish')
-							Dhani.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
+							Kaido.sendMessage(from, fs.readFileSync(ran), sticker, { quoted: mek })
 							fs.unlinkSync(media)
 							fs.unlinkSync(ran)
 							})
@@ -1641,10 +1641,10 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
            var teks2 = q.split('|')[1] ? q.split('|')[1] : ''
            var imgbb = require('imgbb-uploader')
            var enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-           var media = await Dhani.downloadAndSaveMediaMessage(enmedia)
+           var media = await Kaido.downloadAndSaveMediaMessage(enmedia)
            var njay = await imgbb('520bd6f6209077d1777c2a4f20c509c2', media)
            var resu = await getBuffer(`https://api.memegen.link/images/custom/${teks1}/${teks2}.png?background=${njay.display_url}`)
-           Dhani.sendMessage(from, resu, image, {quoted: troli})
+           Kaido.sendMessage(from, resu, image, {quoted: troli})
            fs.unlinkSync(media)
            } catch (e) {
            return reply(`${e}`)
@@ -1658,7 +1658,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
            var imgbb = require('imgbb-uploader')
            if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length > 0) {
            ger = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-           owgi = await  Dhani.downloadAndSaveMediaMessage(ger)
+           owgi = await  Kaido.downloadAndSaveMediaMessage(ger)
            anu = await imgbb("f0b190d67308d34811fab9c56fe8aba7", owgi)
            tekks = `${anu.display_url}`
            ranp = getRandom('.gif')
@@ -1679,7 +1679,7 @@ if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0)
          let ac = pin[Math.floor(Math.random() * pin.length)]
          let di = await getBuffer(ac)
          //sticWait(from)
-     //    await Dhani.sendMessage(from, di, image, { quoted: mek })
+     //    await Kaido.sendMessage(from, di, image, { quoted: mek })
        yt1=`Kelik Next Untuk Gambar Selanjutnya`
   yt2=`${BotName}`
          but = [
@@ -1726,7 +1726,7 @@ bo = args.join(" ")
 sticLoad(from)
 ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
 p3 = await getBuffer(ini.url)
-Dhani.sendMessage(from, p3, audio)
+Kaido.sendMessage(from, p3, audio)
 break
 
 //══════════[ Truth or Dare]══════════//
@@ -1812,7 +1812,7 @@ vcard2 = 'BEGIN:VCARD\n'
 + `ORG: Creator ${Miminnya} ;\n`
 + `TEL;type=CELL;type=VOICE;waid=${oNumber}:${oNumber}\n`
 + 'END:VCARD'.trim()
-Dhani.sendMessage(from, {displayName: `Ownernya ${BotName}`, vcard: vcard2}, contact, 
+Kaido.sendMessage(from, {displayName: `Ownernya ${BotName}`, vcard: vcard2}, contact, 
 { quoted: troli, 
 })
 fakeyt(`_Tuh Kak Ownerku_`)
@@ -1820,17 +1820,17 @@ break
 case 'bc':
              if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
              if (args.length < 1) return reply('teks?')
-             anu100 = await Dhani.chats.all()
-             if (isMedia && !Dhani.message.videoMessage || isQuotedImage) {
-             const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(Dhani).replace('quotedM','m')).message.extendedTextMessage.contextInfo : Dhani
-             bc100 = await Dhani.downloadMediaMessage(encmedia)
+             anu100 = await Kaido.chats.all()
+             if (isMedia && !Kaido.message.videoMessage || isQuotedImage) {
+             const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(Kaido).replace('quotedM','m')).message.extendedTextMessage.contextInfo : Kaido
+             bc100 = await Kaido.downloadMediaMessage(encmedia)
              for (let _ of anu100) {
-             Dhani.sendMessage(_.jid, bc100, image, {quoted: ftrol, caption: `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`})
+             Kaido.sendMessage(_.jid, bc100, image, {quoted: ftrol, caption: `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`})
 }
              fakeyt('Suksess broadcast')
              } else {
              for (let _ of anu100) {
-             Dhani.sendMessage(_.jid, 
+             Kaido.sendMessage(_.jid, 
 			{"contentText": `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`,
 			"footerText": `${tanggal}`,
 			"buttons": [
@@ -1851,7 +1851,7 @@ case 'upswteks':
 if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
 if (args.length < 1) return reply('Teksnya?')
 teks = body.slice(10)
-Dhani.sendMessage('status@broadcast', teks, MessageType.text)
+Kaido.sendMessage('status@broadcast', teks, MessageType.text)
 reply(`Sukses upload status:\n${teks}`)
 break
 
@@ -1860,8 +1860,8 @@ if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
 if (!isQuotedSticker) return reply('Reply stikernya!')
 if (isMedia && !mek.message.videoMessage || isQuotedSticker) {
 const encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-buff = await Dhani.downloadMediaMessage(encmedia)
-Dhani.sendMessage('status@broadcast', buff, sticker)
+buff = await Kaido.downloadMediaMessage(encmedia)
+Kaido.sendMessage('status@broadcast', buff, sticker)
 }
 reply(`Sukses upload sticker`)
 break
@@ -1871,8 +1871,8 @@ if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
 if (!isQuotedAudio) return reply('Reply audionya!')
 if (isMedia && !mek.message.videoMessage || isQuotedAudio) {
 const encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-buff = await Dhani.downloadMediaMessage(encmedia)
-Dhani.sendMessage('status@broadcast', buff, audio, {mimetype: 'audio/mp4', duration: 359996400})
+buff = await Kaido.downloadMediaMessage(encmedia)
+Kaido.sendMessage('status@broadcast', buff, audio, {mimetype: 'audio/mp4', duration: 359996400})
 }
 reply(`Sukses upload audio`)
 break
@@ -1882,9 +1882,9 @@ if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
 var konti = body.slice(11)
 reply(mess.wait)
 var enmediap = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-var mediap = await Dhani.downloadAndSaveMediaMessage(enmediap)
+var mediap = await Kaido.downloadAndSaveMediaMessage(enmediap)
 const buffer3 = fs.readFileSync(mediap)
-Dhani.sendMessage('status@broadcast', buffer3, MessageType.video, {duration: 359996400, caption: `${konti}`})
+Kaido.sendMessage('status@broadcast', buffer3, MessageType.video, {duration: 359996400, caption: `${konti}`})
 reply(`Sukses upload video:\n${konti}`)
 break
 
@@ -1893,9 +1893,9 @@ if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
 var teksyy = body.slice(11)
 reply(mess.wait)
 enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-media = await Dhani.downloadAndSaveMediaMessage(enmedia)
+media = await Kaido.downloadAndSaveMediaMessage(enmedia)
 buffer = fs.readFileSync(media)
-Dhani.sendMessage('status@broadcast', buffer, MessageType.image, {quoted: mek, caption: `${teksyy}`})
+Kaido.sendMessage('status@broadcast', buffer, MessageType.image, {quoted: mek, caption: `${teksyy}`})
 reply(`Sukses upload image:\n${teksyy}`)
 break
 
@@ -1964,10 +1964,10 @@ if (!isGroupAdmins && !mek.key.fromMe) return fakeyt(mess.only.admin)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
 if (args[0] === 'buka') {
 fakeyt(`*Berhasil Membuka Grup ${groupMetadata.subject}*`)
-Dhani.groupSettingChange(from, GroupSettingChange.messageSend, false)
+Kaido.groupSettingChange(from, GroupSettingChange.messageSend, false)
 } else if (args[0] === 'tutup') {
 fakeyt(`*Berhasil Memtutup Grup ${groupMetadata.subject}*`)
-Dhani.groupSettingChange(from, GroupSettingChange.messageSend, true)
+Kaido.groupSettingChange(from, GroupSettingChange.messageSend, true)
 }
 break
 case 'linkgroup':
@@ -1975,9 +1975,9 @@ case 'linkgrup':
 case 'linkgc':
 if (!isGroup) return fakeyt(mess.only.group)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
-linkgc = await Dhani.groupInviteCode(from)
+linkgc = await Kaido.groupInviteCode(from)
 yeh = `https://chat.whatsapp.com/${linkgc}\n\nlink Group *${groupName}*`
-Dhani.sendMessage(from, yeh, text, { quoted: troli})
+Kaido.sendMessage(from, yeh, text, { quoted: troli})
 break
 case 'promote' :
 if (!isGroup) return fakeyt(mess.only.group)
@@ -1991,10 +1991,10 @@ for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-Dhani.groupMakeAdmin(from, mentioned)
+Kaido.groupMakeAdmin(from, mentioned)
 } else {
 mentions(`Perintah di terima, @${mentioned[0].split('@')[0]} Kamu Menjadi Admin Di Group *${groupMetadata.subject}*`, mentioned, true)
-Dhani.groupMakeAdmin(from, mentioned)
+Kaido.groupMakeAdmin(from, mentioned)
 }
 break
 case 'demote' :
@@ -2009,10 +2009,10 @@ for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-Dhani.groupDemoteAdmin(from, mentioned)
+Kaido.groupDemoteAdmin(from, mentioned)
 } else {
 mentions(`Perintah di terima, Menurunkan : @${mentioned[0].split('@')[0]} Menjadi Member`, mentioned, true)
-Dhani.groupDemoteAdmin(from, mentioned)
+Kaido.groupDemoteAdmin(from, mentioned)
 }
 break
 case 'add' :
@@ -2023,7 +2023,7 @@ if (args.length < 1) return fakeyt('Yang mau di add siapa??')
 if (args[0].startsWith('08')) return fakeyt('Gunakan kode negara Gan')
 try {
 num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-Dhani.groupAdd(from, [num])
+Kaido.groupAdd(from, [num])
 } catch (e) {
 console.log('Error :', e)
 fakeyt('Gagal menambahkan target, mungkin karena di private')
@@ -2040,14 +2040,14 @@ mek.message.extendedTextMessage === null
 return fakeyt("Tag target yang ingin di kick!");
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid;
 if (mentioned.length > 1) {
-Dhani.groupRemove(from, mentioned);
+Kaido.groupRemove(from, mentioned);
 fakeyt(mess.success);
 } else if (mentioned.length < 1) {
 anu = mek.message.extendedTextMessage.contextInfo.participant;
-Dhani.groupRemove(from, [anu]);
+Kaido.groupRemove(from, [anu]);
 fakeyt(mess.success);
 } else {
-Dhani.groupRemove(from, mentioned);
+Kaido.groupRemove(from, mentioned);
 fakeyt(mess.success);
 }
 break;
@@ -2067,15 +2067,15 @@ case 'setname':
 if (!isGroup) return fakeyt(mess.only.group)
 if (!isGroupAdmins) return fakeyt(mess.only.admin)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
-Dhani.groupUpdateSubject(from, `${body.slice(9)}`)
-Dhani.sendMessage(from, `\`\`\`Sukses ✅, Mengganti nama grup menjadi\`\`\` *${body.slice(9)}*`, text, { quoted: troli})
+Kaido.groupUpdateSubject(from, `${body.slice(9)}`)
+Kaido.sendMessage(from, `\`\`\`Sukses ✅, Mengganti nama grup menjadi\`\`\` *${body.slice(9)}*`, text, { quoted: troli})
 break
 case 'setdesc':
 if (!isGroup) return fakeyt(mess.only.group)
 if (!isGroupAdmins) return fakeyt(mess.only.admin)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
-Dhani.groupUpdateDescription(from, `${body.slice(9)}`)
-Dhani.sendMessage(from, `\`\`\`Sukses ✅, Mengganti deskripsi grup\`\`\` *${groupMetadata.subject}* Menjadi: *${body.slice(9)}*`, text, { quoted: troli})
+Kaido.groupUpdateDescription(from, `${body.slice(9)}`)
+Kaido.sendMessage(from, `\`\`\`Sukses ✅, Mengganti deskripsi grup\`\`\` *${groupMetadata.subject}* Menjadi: *${body.slice(9)}*`, text, { quoted: troli})
 break
 case 'setppgrup':
 case 'setpp':
@@ -2084,8 +2084,8 @@ if (!isGroupAdmins && !mek.key.fromMe) return fakeyt(mess.only.admin)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
 if (isQuotedImage) {
 let encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-let media = await Dhani.downloadMediaMessage(encmedia)
-Dhani.updateProfilePicture(from, media)
+let media = await Kaido.downloadMediaMessage(encmedia)
+Kaido.updateProfilePicture(from, media)
 //.then((res) => fakeyt(jsonformat(res)))
 //.catch((err) => fakeyt(jsonformat(err)))
 } else {
@@ -2109,12 +2109,12 @@ case 'grupinfo':
 case 'groupinfo':
 if (!isGroup) return fakeyt(mess.only.group)
 try {
-var pic = await Dhani.getProfilePicture(from)
+var pic = await Kaido.getProfilePicture(from)
 } catch {
 var pic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
 }
 let ingfo = `*G R O U P I N F O*\n\n*Name :* ${groupName}\n*ID Grup :* ${from}\n*Dibuat :* ${moment(`${groupMetadata.creation}` * 1000).tz('Asia/Jakarta').format('DD/MM/YYYY HH:mm:ss')}\n*Owner Grup :* @${groupMetadata.owner.split('@')[0]}\n*Jumlah Admin :* ${groupAdmins.length}\n*Jumlah Peserta :* ${groupMembers.length}\n*Welcome :* ${isWelkom ? 'Aktif' : 'Mati'}\n*AntiLink :* ${isAntiLink ? 'Aktif' : 'Mati'}\n*Desc :* \n\n${groupMetadata.desc}`
-Dhani.sendMessage(from, await getBuffer(pic), image, {quoted: mek, caption: ingfo, contextInfo: {"mentionedJid": [groupMetadata.owner.replace('@c.us', '@s.whatsapp.net')]}})
+Kaido.sendMessage(from, await getBuffer(pic), image, {quoted: mek, caption: ingfo, contextInfo: {"mentionedJid": [groupMetadata.owner.replace('@c.us', '@s.whatsapp.net')]}})
 break
 case 'resetlinkgc':
 case 'resetlinkgroup':
@@ -2125,7 +2125,7 @@ if (!isGroup) return fakeyt(mess.only.group)
 if (!isGroupAdmins && !mek.key.fromMe) return fakeyt(mess.only.admin)
 if (!isBotGroupAdmins) return fakeyt(mess.only.Badmin)
 json = ['action', 'inviteReset', from]
-Dhani.query({json, expect200: true})
+Kaido.query({json, expect200: true})
 fakeyt('Sukses Mereset Link Group')
 break
 case 'online':
@@ -2134,8 +2134,8 @@ case 'here':
 if (!isGroup) return fakeyt(mess.only.group)
 try {
 let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
-let online = [...Object.keys(Dhani.chats.get(ido).presences), Dhani.user.jid]
-Dhani.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join `\n`, text, { quoted: fkon, contextInfo: { mentionedJid: online }})
+let online = [...Object.keys(Kaido.chats.get(ido).presences), Kaido.user.jid]
+Kaido.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join `\n`, text, { quoted: fkon, contextInfo: { mentionedJid: online }})
 } catch (e) {
 fakeyt(`${e}`)
 }
