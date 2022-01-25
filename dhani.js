@@ -39,6 +39,7 @@ const ffmpeg = require('fluent-ffmpeg')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const hx = require('hxz-api')
 
+
 //══════════[ Lib ]══════════//
 
 const { fetchJosn, fetchText } = require('./lib/fetcher')
@@ -1755,6 +1756,7 @@ but = [
 sendButImage(from, dr1, dr2, td, but)
 break
 
+//══════════[ Menu Informasi ]══════════//
 case 'gempa':
 sticWait(from)
 td = fs.readFileSync('./media/bmkg.jpg')
@@ -1766,6 +1768,37 @@ but = [
 ]
 sendButImage(from, dr1, dr2, td, but)
 break
+
+case 'kompas':
+sticWait(from)
+td = fs.readFileSync('./media/kompas.png')
+bt = await fetchJson(`https://myselfff.herokuapp.com/docs/news/kompas`)
+dr1 =`*「 K O M P A S . C O M」*\n\n*Berita Hari Ini*:\n${bt.result.title}\n\n`
+dr2 =`*Klik Link Di Bawah Ini Untuk Berita Lebih Lengkap*\n${bt.result.url}`
+but = [
+{ buttonId: `.kompas ${dr2}`, buttonText: { displayText: '️Berita Selanjut' }, type: 1 }
+]
+sendButImage(from, dr1, dr2, td, but)
+break
+
+case 'google':
+            case 'googlesearch':
+            case 'ggs':
+                if (args.length < 1) return reply('Yang mau di cari apaan?')
+                teks = args.join(' ')
+                reply(mess.wait)
+                res = await ggs({
+                    'query': `${teks}`
+                })
+                kant = ``
+                for (let i of res) {
+                    kant += `*Judul* : ${i.title}
+*Link* : ${i.link}
+*Keterangan* : ${i.snippet}`
+                }
+                var akhir = kant.trim()
+                reply(akhir)
+                break
 //══════════[ Fitur Owner ]══════════//
 
 case 'owner':
