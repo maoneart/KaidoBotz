@@ -39,12 +39,15 @@ const ffmpeg = require('fluent-ffmpeg')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const hx = require('hxz-api')
 const ggs = require('google-it')
+const ig = require("insta-fetcher")
 
 //══════════[ Lib ]══════════//
 
 const { fetchJosn, fetchText } = require('./lib/fetcher')
 const { color, bgcolor } = require('./lib/color')
 const { wait, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, start, info, success, close } = require('./lib/functions')
+const { wikiSearch } = require('./lib/wiki.js')
+const { lirikLagu } = require('./lib/lirik.js')
 
 //══════════[ Setting ]══════════//
 
@@ -54,9 +57,13 @@ autorecording = false
 //----
 
 const { Miminnya, NameStore, BotName, fake, oNumber, IG, BMKG, lolkey, Gopay, Dana, Pulsa} = require('./setting.json')
+const setting = JSON.parse(fs.readFileSync('./setting.json'))
 gambar = fs.readFileSync('./media/logo.jpg')
 tamnel = fs.readFileSync('./media/logotoko.jpg')
 td = fs.readFileSync('./media/masjid.jpg')
+
+//══════════[ SPI Key ]══════════//
+ZeksApi = setting.ZeksApi
 
 //══════════[ Music ]══════════//
 kaido = fs.readFileSync('./media/audio/kaido.mp3')
@@ -368,6 +375,21 @@ const isUrl = (url) => {
                     fs.unlinkSync(filename)
                 });
             }  
+            const sendFileFromUrl = async (link, type, options) => {
+              hasil = await getBuffer(link)
+              Kaido.sendMessage(from, hasil, type, options).catch(e => {
+                  fetch(link).then((hasil) => {
+                      Kaido.sendMessage(from, hasil, type, options).catch(e => {
+                          Kaido.sendMessage(from, {
+                              url: link
+                          }, type, options).catch(e => {
+                              reply
+                              console.log(e)
+                          })
+                      })
+                  })
+              })
+          }
 //=================( STICKER )=================//
             const sticOwner = (hehe) => {
               ano = fs.readFileSync('./media/sticker/owner.webp')
@@ -1729,6 +1751,7 @@ p3 = await getBuffer(ini.url)
 Kaido.sendMessage(from, p3, audio)
 break
 
+
 //══════════[ Truth or Dare]══════════//
 case 'dare':
 sticWait(from)
@@ -1764,7 +1787,7 @@ bt = await fetchJson(`https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`)
 dr1 =`*「 I N F O G E M P A 」*\n\nTanggal : ${bt.Infogempa.gempa.Tanggal}\nJam : ${bt.Infogempa.gempa.Jam}\nGetaran : ${bt.Infogempa.gempa.Magnitude}\nWilayah : ${bt.Infogempa.gempa.Wilayah}\nPotensi : ${bt.Infogempa.gempa.Potensi}`
 dr2 =`Klik Di Next Untuk Melanjutkan`
 but = [
-{ buttonId: `${BMKG}`, buttonText: { displayText: '️Info Lebih Lanjut' }, type: 1 }
+{ buttonId: `.ggs gempa`, buttonText: { displayText: '️Info Lebih Lanjut' }, type: 1 }
 ]
 sendButImage(from, dr1, dr2, td, but)
 break
@@ -1798,6 +1821,78 @@ case 'google':
                 }
                 var akhir = kant.trim()
                 reply(akhir)
+                break
+
+case 'trans':
+                kntl = `${args.join(' ')}`
+                tex1 = kntl.split("|")[0];
+                tex2 = kntl.split("|")[1];
+                tex3 = kntl.split("|")[2];
+                var a = await fetchJson(`https://tools.helixs.id//API/translate.php?text=${tex3}&from=${tex1}&to=${tex2}`, {
+                    method: 'get'
+                })
+                var b = `${a.result}`
+                reply(b)
+                break
+                
+case "igstalk":
+case "stalkig":
+                if (!c) return reply("Usernamenya?");
+                ig.fetchUser(`${args.join(" ")}`).then((Y) => {
+                    console.log(`${args.join(" ")}`);
+                    ten = `${Y.profile_pic_url_hd}`;
+                    teks = `*ID* : ${Y.profile_id}\n*Username* : ${args.join(
+            ""
+          )}\n*Full Name* : ${Y.full_name}\n*Bio* : ${
+            Y.biography
+          }\n*Followers* : ${Y.following}\n*Following* : ${
+            Y.followers
+          }\n*Private* : ${Y.is_private}\n*Verified* : ${
+            Y.is_verified
+          }\n\n*Link* : https://instagram.com/${args.join("")}`;
+                    sendMediaURL(from, ten, teks);
+                });
+                break
+
+                case 'wiki':
+            case 'wikipedia':
+                if (args.length < 1) return reply(' Yang Mau Di Cari Apa? ')
+                teks = args.join(' ')
+                res = await wikiSearch(teks).catch(e => {
+                    return reply('_[ ! ] Error Hasil Tidak Ditemukan_')
+                })
+                result = `*Judul :* ${res[0].judul}
+*Wiki :* ${res[0].wiki}`
+                sendFileFromUrl(res[0].thumb, image, {
+                    quoted: troli,
+                    caption: result
+                }).catch(e => {
+                    reply(result)
+                })
+                break
+
+                case 'lirik':
+                  if (args.length < 1) return reply('Judulnya?')
+                  reply(mess.wait)
+                  teks = body.slice(7)
+                  lirikLagu(teks).then((res) => {
+                      let lirik = `${res[0].result}`
+                      reply(lirik)
+                  })
+                  break
+
+                  case 'spekhp':
+                if (args.length < 1) return reply('Teksnya?')
+                reply(mess.wait)
+                anu = await fetchJson(`https://api.zeks.me/api/gsmArena?apikey=${ZeksApi}&q=${body.slice(8)}`, {
+                    method: 'get'
+                })
+                teks = `*TITLE:* \n${anu.data.title}\n\n*DESCRIPTION:* \n${anu.data.few_desc}\n*SPECIFICATION:* \n${anu.data.full_desc.string}\n\n_-JavaScript|AyogiAk_ `
+                buff = await getBuffer(anu.data.thumb)
+                Kaido.sendMessage(from, buff, image, {
+                    quoted: troli,
+                    caption: teks
+                })
                 break
 //══════════[ Fitur Owner ]══════════//
 
