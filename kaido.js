@@ -1751,7 +1751,20 @@ p3 = await getBuffer(ini.url)
 Kaido.sendMessage(from, p3, audio)
 break
 
-
+case 'ig':
+  case 'igdownload':
+  case 'igdl':
+  case 'instagram':
+      if (!c) return reply('Linknya?')
+      var {
+          igDownloader
+      } = require('./lib/igdown')
+      res = await igDownloader(`${c}`).catch(e => {
+          reply(mess.error.api)
+      })
+      console.log(res)
+      sendMediaURL(from, `${res.result.link}`, `${res.result.desc}`)
+      break
 //══════════[ Truth or Dare]══════════//
 case 'dare':
 sticWait(from)
