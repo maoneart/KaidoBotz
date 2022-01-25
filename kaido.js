@@ -1954,6 +1954,82 @@ case 'bc':
              fakeyt('Suksess broadcast')
 }
              break
+             case 'bc1':
+                Kaido.updatePresence(from, Presence.composing)
+                if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
+                if (args.length < 1) return reply('Teksnya?')
+                anu = await Kaido.chats.all()
+                if (isMedia && !mek.message.videoMessage || isQuotedImage) {
+                    const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                    buff = await Kaido.downloadMediaMessage(encmedia)
+                    for (let _ of anu) {
+                        Kaido.sendMessage(_.jid, buff, image, {
+                            viewOnce: true,
+                            caption: `${body.slice(4)}`
+                        })
+                    }
+                    reply(`Sukses mengirim Broadcast ${body.slice(4)}`)
+                } else if (isMedia && !mek.message.videoMessage || isQuotedVideo) {
+                    const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                    buff = await Kaido.downloadMediaMessage(encmedia)
+                    for (let _ of anu) {
+                        Kaido.sendMessage(_.jid, buff, video, {
+                            viewOnce: true,
+                            caption: `${body.slice(4)}`
+                        })
+                    }
+                    reply(`Sukses mengirim Broadcast ${body.slice(4)}`)
+                } else if (isMedia && !mek.message.videoMessage || isQuotedVideo) {
+                    const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                    buff = await Kaido.downloadMediaMessage(encmedia)
+                    for (let _ of anu) {
+                        Kaido.sendMessage(_.jid, buff, video, {
+                            mimetype: Mimetype.gif,
+                            quoted: finv,
+                            contextInfo: {
+                                forwardingScore: 508,
+                                isForwarded: true
+                            },
+                            caption: `${body.slice(4)}`
+                        })
+                    }
+                    reply(`Sukses mengirim Broadcast ${body.slice(4)}`)
+                } else {
+                    for (let _ of anu) {
+                        sendMess(_.jid, `${body.slice(4)}`)
+                    }
+                    reply(`Sukses mengirim Broadcast:\n${body.slice(4)}`)
+                }
+                break
+
+                case 'tobc':
+                  if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
+                  Kaido.updatePresence(from, Presence.composing)
+                  anu = await Kaido.chats.all()
+                  if (isMedia && !mek.message.videoMessage || isQuotedAudio) {
+                      const encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                      buff = await Kaido.downloadMediaMessage(encmedia)
+                      for (let _ of anu) {
+                          Kaido.sendMessage(_.jid, buff, audio, {
+                              quoted: troli
+                          })
+                      }
+                  } else if (isMedia && !mek.message.videoMessage || isQuotedSticker) {
+                      const encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+                      buff = await Kaido.downloadMediaMessage(encmedia)
+                      for (let _ of anu) {
+                          Kaido.sendMessage(_.jid, buff, sticker, {
+                              quoted: troli,
+                              contextInfo: {
+                                  forwardingScore: 508,
+                                  isForwarded: true
+                              }
+                          })
+                      }
+                  } else {
+                      reply('reply sticker/audio')
+                  }
+                  break
 
 case 'upswteks':
 if (!isOwner) return reply('LU BUKAN OWNER GBLOK')
