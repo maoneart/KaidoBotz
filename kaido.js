@@ -1925,6 +1925,7 @@ Kaido.sendMessage(from, {displayName: `Ownernya ${BotName}`, vcard: vcard2}, con
 })
 fakeyt(`_Tuh Kak Ownerku_`)
 break
+
 case 'bc':
              if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
              if (args.length < 1) return reply('teks?')
@@ -2082,6 +2083,35 @@ buffer = fs.readFileSync(media)
 Kaido.sendMessage('status@broadcast', buffer, MessageType.image, {quoted: mek, caption: `${teksyy}`})
 reply(`Sukses upload image:\n${teksyy}`)
 break
+
+case "colongsw": //by:Kaido
+                if (!mek.key.fromMe) return;
+                if ((isMedia && !mek.message.videoMessage) || isQuotedImage) {
+                    ger = isQuotedImage ?
+                        JSON.parse(JSON.stringify(mek).replace("quotedM", "m")).message
+                        .extendedTextMessage.contextInfo :
+                        mek;
+                    owgi = await Kaido.downloadAndSaveMediaMessage(ger);
+                    Kaido.sendMessage(sender, fs.readFileSync(owgi), "imageMessage", {
+                        caption: c,
+                    });
+                    reply("Sukses");
+                    fs.unlinkSync(owgi);
+                } else if ((isMedia && !mek.message.videoMessage) || isQuotedVideo) {
+                    ger = isQuotedVideo ?
+                        JSON.parse(JSON.stringify(mek).replace("quotedM", "m")).message
+                        .extendedTextMessage.contextInfo :
+                        mek;
+                    owgi = await Kaido.downloadAndSaveMediaMessage(ger);
+                    Kaido.sendMessage(sender, fs.readFileSync(owgi), "videoMessage", {
+                        caption: c,
+                    });
+                    reply("Sukses");
+                    fs.unlinkSync(owgi);
+                } else {
+                    reply("Reply sw foto / video yg mau dicolong");
+                }
+                break;
 
 //══════════[ Fitur Grup ]══════════//
 
