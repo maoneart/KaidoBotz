@@ -38,7 +38,7 @@ const moment = require('moment-timezone')
 const ffmpeg = require('fluent-ffmpeg')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const hx = require('hxz-api')
-
+const ggs = require('google-it')
 
 //══════════[ Lib ]══════════//
 
