@@ -1796,9 +1796,22 @@ case 'asahotak':
   sticWait(from)
   td = fs.readFileSync('./media/logo.jpg')
                 const asahotak = await axios.get('https://api.wibusoft.com/api/permainan/asah-otak')
-                //await giie.sendFileFromUrl(from, `${porn.data.url}`, '', `${porn.data.title}`)
                 dr1 =`*${asahotak.data.result.soal}*`
 dr2 =`*${asahotak.data.result.jawaban}*`
+dr3 =`\n\nKelik Pertanyaan Selanjutnya Untuk Ganti Pertanyaan`
+Kaido.sendMessage('6282122365620@s.whatsapp.net', dr2, MessageType.text)
+but = [
+  { buttonId: `${prefix + command}`, buttonText: { displayText: '️Pertanyaan Selanjutnya' }, type: 1 }
+]
+sendButImage(from, dr1, dr3, td, but)
+break
+
+case 'tt':
+  sticWait(from)
+  td = fs.readFileSync('./media/logo.jpg')
+                const tt = await axios.get('https://api.wibusoft.com/api/permainan/teka-teki')
+                dr1 =`*${tt.data.result.soal}*`
+dr2 =`*${tt.data.result.jawaban}*`
 dr3 =`\n\nKelik Pertanyaan Selanjutnya Untuk Ganti Pertanyaan`
 Kaido.sendMessage('6282122365620@s.whatsapp.net', dr2, MessageType.text)
 but = [
