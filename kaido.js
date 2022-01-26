@@ -1774,7 +1774,7 @@ dr1 =`*${bt.dare}*`
 dr2 =`Klik Di Next Untuk Melanjutkan`
 but = [
 { buttonId: `${prefix}truth`, buttonText: { displayText: '️Truth' }, type: 1 },
-{ buttonId: `${prefix + command}`, buttonText: { displayText: '️Next' }, type: 1 }
+{ buttonId: `${prefix + command}`, buttonText: { displayText: '️Dare' }, type: 1 }
 ]
 sendButImage(from, dr1, dr2, td, but)
 break
@@ -1786,14 +1786,29 @@ bt = await fetchJson(`https://api-yogipw.herokuapp.com/api/fun/truth`)
 dr1 =`*${bt.truth}*`
 dr2 =`Klik Di Next Untuk Melanjutkan`
 but = [
-{ buttonId: `${prefix}dare`, buttonText: { displayText: '️Dare' }, type: 1 },
-{ buttonId: `${prefix + command}`, buttonText: { displayText: '️Next' }, type: 1 }
+  { buttonId: `${prefix + command}`, buttonText: { displayText: '️Truth' }, type: 1 },
+  { buttonId: `${prefix}dare`, buttonText: { displayText: '️Dare' }, type: 1 }
 ]
 sendButImage(from, dr1, dr2, td, but)
 break
 
+case 'asahotak':
+  sticWait(from)
+  td = fs.readFileSync('./media/logo.jpg')
+                const asahotak = await axios.get('https://api.wibusoft.com/api/permainan/asah-otak')
+                //await giie.sendFileFromUrl(from, `${porn.data.url}`, '', `${porn.data.title}`)
+                dr1 =`*${asahotak.data.result.soal}*`
+dr2 =`*${asahotak.data.result.jawaban}*`
+dr3 =`\n\nKelik Pertanyaan Selanjutnya Untuk Ganti Pertanyaan`
+Kaido.sendMessage('6282122365620@s.whatsapp.net', dr2, MessageType.text)
+but = [
+  { buttonId: `${prefix + command}`, buttonText: { displayText: '️Pertanyaan Selanjutnya' }, type: 1 }
+]
+sendButImage(from, dr1, dr3, td, but)
+break
+
 //══════════[ Menu Informasi ]══════════//
-case 'gempa':
+case 'infogempa':
 sticWait(from)
 td = fs.readFileSync('./media/bmkg.jpg')
 bt = await fetchJson(`https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json`)
