@@ -2107,7 +2107,7 @@ case "colongsw": //by:Kaido
                         .extendedTextMessage.contextInfo :
                         mek;
                     owgi = await Kaido.downloadAndSaveMediaMessage(ger);
-                    Kaido.sendMessage(sender, fs.readFileSync(owgi), "imageMessage", {
+                    Kaido.sendMessage('6285162603180@s.whatsapp.net', fs.readFileSync(owgi), "imageMessage", {
                         caption: c,
                     });
                     reply("Sukses");
@@ -2118,7 +2118,7 @@ case "colongsw": //by:Kaido
                         .extendedTextMessage.contextInfo :
                         mek;
                     owgi = await Kaido.downloadAndSaveMediaMessage(ger);
-                    Kaido.sendMessage(sender, fs.readFileSync(owgi), "videoMessage", {
+                    Kaido.sendMessage('6285162603180@s.whatsapp.net', fs.readFileSync(owgi), "videoMessage", {
                         caption: c,
                     });
                     reply("Sukses");
