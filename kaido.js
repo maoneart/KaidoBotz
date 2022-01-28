@@ -1737,7 +1737,7 @@ bo = args.join(" ")
 sticLoad(from)
 ini = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/playmp4?query=${bo}&apikey=Alphabot`)
 p4 = await getBuffer(ini.results.result)
-Kaido.sendMessage(from, p4, video)
+Dheni.sendMessage(from, p4, video)
 break
 
 case 'ply3':
