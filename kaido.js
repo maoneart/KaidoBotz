@@ -1718,8 +1718,8 @@ case 'ytplay':
 if (args.length ==0)return reply('Judul nya Mana Kak?')
 bo = args.join(" ")
 sticWait(from)
-gett = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
-yt1 =`*Judul :* ${gett.title}\n\n*Author :* ${gett.channel}\n*Dipublikasikan :* ${gett.published}\n*Views :*\n${gett.views}`
+gett = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/search?query=${bo}&apikey=Alphabot`)
+yt1 =`*Judul :* ${gett.results.all[0].title}\n\n*Author :* ${gett.results.all[0].author.name}\n*Dipublikasikan :* ${gett.results.all[0].ago}\n*Views :* ${gett.results.all[0].views}`
 yt2 =`${BotName}`
 ytg = fs.readFileSync('./media/logo.jpg')
 but = [
@@ -1735,9 +1735,9 @@ case 'playmp4':
 //if (isBanned)return sticBanned(from)
 bo = args.join(" ")
 sticLoad(from)
-ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp4?query=${bo}`)
-p4 = await getBuffer(ini.url)
-Dheni.sendMessage(from, p4, video)
+ini = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/playmp4?query=${bo}&apikey=Alphabot`)
+p4 = await getBuffer(ini.results.result)
+Kaido.sendMessage(from, p4, video)
 break
 
 case 'ply3':
@@ -1746,8 +1746,8 @@ case 'playmp3':
 //if (isBanned)return sticBanned(from)
 bo = args.join(" ")
 sticLoad(from)
-ini = await fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${bo}`)
-p3 = await getBuffer(ini.url)
+ini = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/playmp3?query=${bo}&apikey=Alphabot`)
+p3 = await getBuffer(ini.results.result)
 Kaido.sendMessage(from, p3, audio)
 break
 
