@@ -1721,12 +1721,13 @@ sticWait(from)
 gett = await fetchJson(`https://api-alphabot.herokuapp.com/api/downloader/youtube/search?query=${bo}&apikey=Alphabot`)
 yt1 =`*Judul :* ${gett.results.all[0].title}\n\n*Author :* ${gett.results.all[0].author.name}\n*Dipublikasikan :* ${gett.results.all[0].ago}\n*Views :* ${gett.results.all[0].views}`
 yt2 =`${BotName}`
-ytg = fs.readFileSync('./media/logo.jpg')
+buff = await getBuffer(gett.results.all[0].image)
+//ytg = fs.readFileSync('./media/logo.jpg')
 but = [
 { buttonId: `${prefix}ply4 ${args.join(" ")}`, buttonText: { displayText: '𝘷𝘪𝘥𝘦𝘰' }, type: 1 },
 { buttonId: `${prefix}ply3 ${args.join(" ")}`, buttonText: { displayText: '️𝘮𝘶𝘴𝘪𝘬' }, type: 1 }
 ]
-sendButImage(from, yt1, yt2, ytg, but)
+sendButImage(from, yt1, yt2, buff, but)
 break
 
 case 'ply4':
