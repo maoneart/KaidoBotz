@@ -1769,7 +1769,7 @@ case 'ig':
 //══════════[ Truth or Dare]══════════//
 case 'dare':
 sticWait(from)
-td = fs.readFileSync('./media/logo.jpg')
+td = fs.readFileSync('./media/tod.jpg')
 bt = await fetchJson(`https://api-yogipw.herokuapp.com/api/fun/dare`)
 dr1 =`*${bt.dare}*`
 dr2 =`Klik Di Next Untuk Melanjutkan`
@@ -1782,7 +1782,7 @@ break
 
 case 'truth':
 sticWait(from)
-td = fs.readFileSync('./media/logo.jpg')
+td = fs.readFileSync('./media/tod.jpg')
 bt = await fetchJson(`https://api-yogipw.herokuapp.com/api/fun/truth`)
 dr1 =`*${bt.truth}*`
 dr2 =`Klik Di Next Untuk Melanjutkan`
