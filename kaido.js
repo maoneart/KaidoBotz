@@ -203,17 +203,18 @@ Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
 }
 //BUTTON LOCATION//
 const sendButLocation = async (id, text1, desc1, gam1, but = [], options = {}) => {
-kma = gam1
-mhan = await Kaido.prepareMessage(from, kma, location)
-const buttonMessages = {
-locationMessage: mhan.message.locationMessage,
-contentText: text1,
-footerText: desc1,
-buttons: but,
-headerType: 6
-}
-Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
-}
+					them = gam1
+					mediaxxaa = await Kaido.prepareMessage(id, them, MessageType.location, {thumbnail: them})
+					locmhan = mediaxxaa.message["ephemeralMessage"] ? mediaxxaa.message.ephemeralMessage : mediaxxaa
+					const buttonMessages = {
+						locationMessage: locmhan.message.locationMessage,
+						contentText: text1,
+						footerText: desc1,
+						buttons: but,
+						headerType: 6
+						}
+						Kaido.sendMessage(id, buttonMessages, MessageType.buttonsMessage, options)
+						}
 
 //══════════[ Fake ]══════════//
 
@@ -1955,35 +1956,57 @@ Kaido.sendMessage(from, {displayName: `Ownernya ${BotName}`, vcard: vcard2}, con
 fakeyt(`_Tuh Kak Ownerku_`)
 break
 
-case 'bc':
-             if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
-             if (args.length < 1) return reply('teks?')
-             anu100 = await Kaido.chats.all()
-             if (isMedia && !Kaido.message.videoMessage || isQuotedImage) {
-             const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(Kaido).replace('quotedM','m')).message.extendedTextMessage.contextInfo : Kaido
-             bc100 = await Kaido.downloadMediaMessage(encmedia)
-             for (let _ of anu100) {
-             Kaido.sendMessage(_.jid, bc100, image, {quoted: ftrol, caption: `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`})
-}
-             fakeyt('Suksess broadcast')
-             } else {
-             for (let _ of anu100) {
-             Kaido.sendMessage(_.jid, 
-			{"contentText": `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`,
-			"footerText": `${tanggal}`,
-			"buttons": [
-			{"buttonId": `${prefix}menu`,
-			"buttonText": {"displayText": "ᴍᴇɴᴜ"
-			},"type": "RESPONSE"}
-			], "headerType": 'LOCATION',
-			locationMessage: { degreesLatitude: '',
-			degreesLongitude: '',
-			jpegThumbnail: gambar,
-			}}, MessageType.buttonsMessage )
-}
-             fakeyt('Suksess broadcast')
-}
-             break
+//case 'bc':
+       //      if (!isOwner && !mek.key.fromMe) return  reply(mess.only.owner)
+         //    if (args.length < 1) return reply('teks?')
+        //     anu100 = await Kaido.chats.all()
+       //      if (isMedia && !Kaido.message.videoMessage || isQuotedImage) {
+       //      const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(Kaido).replace('quotedM','m')).message.extendedTextMessage.contextInfo : Kaido
+      //       bc100 = await Kaido.downloadMediaMessage(encmedia)
+      //       for (let _ of anu100) {
+     //        Kaido.sendMessage(_.jid, bc100, image, {quoted: ftrol, caption: `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`})
+//}
+    //         fakeyt('Suksess broadcast')
+    //         } else {
+   //          for (let _ of anu100) {
+   //         Kaido.sendMessage(_.jid, 
+			//{"contentText": `*「 PESAN SIARAN BOT 」*\n\n${body.slice(4)}`,
+			//"footerText": `${tanggal}`,
+			//"buttons": [
+			//{"buttonId": `${prefix}menu`,
+			//"buttonText": {"displayText": "ᴍᴇɴᴜ"
+			//},"type": "RESPONSE"}
+			//], "headerType": 'LOCATION',
+			//locationMessage: { degreesLatitude: '',
+			//degreesLongitude: '',
+			//jpegThumbnail: gambar,
+			//}}, MessageType.buttonsMessage )
+//}
+    //         fakeyt('Suksess broadcast')
+//}
+     //        break
+     
+     case 'bc': case 'broadcast':
+			if (!(mek.key.fromMe && isOwner)) return reply(mess.only.owner)
+			if (args.length === 0) return reply(`Kirim perintah *${prefix + command}* text`)
+			var bcnya = await Kaido.chats.all()
+			if (isMedia && !mek.message.videoMessage || isQuotedImage) {
+			var  bcnya2 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
+			var bcnya3 = await Kaido.downloadMediaMessage(bcnya2)
+					for (let _ of bcnya) {
+						Kaido.sendMessage(_.jid, bcnya3, image, { caption: `*----「  BROADCAST 」----*\n\n${q}` })
+						}
+						reply('Sukses broadcast')
+					} else {
+						for (let _ of bcnya) {
+							//sendButImage(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName, tamnel, [{buttonId: '.owner', buttonText: {displayText: 'Owner'}, type: 1},{buttonId: '.infobot', buttonText:{displayText: 'Infobot'}, type: 1}], {quoted: mek})
+							sendButLocation(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName, tamnel, [{buttonId: '.owner', buttonText: {displayText: 'Owner'}, type: 1},{buttonId: '.infobot', buttonText:{displayText: 'Infobot'}, type: 1}], {quoted: mek})
+							}
+						reply('Sukses broadcast')
+					}
+					break      
+     
+     
              case 'bc1':
                 Kaido.updatePresence(from, Presence.composing)
                 if (!isOwner && !mek.key.fromMe) return reply(mess.only.ownerB)
