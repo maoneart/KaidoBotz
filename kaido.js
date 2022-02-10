@@ -1994,13 +1994,13 @@ break
 			var  bcnya2 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
 			var bcnya3 = await Kaido.downloadMediaMessage(bcnya2)
 					for (let _ of bcnya) {
-						Kaido.sendMessage(_.jid, bcnya3, image, { caption: `*----「  BROADCAST 」----*\n\n${q}` })
+						Kaido.sendMessage(_.jid, bcnya3, image, { caption: `*----「  IKLAN PROMOSI 」----*\n\n${q}` })
 						}
 						reply('Sukses broadcast')
 					} else {
 						for (let _ of bcnya) {
-							//sendButImage(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName, tamnel, [{buttonId: '.owner', buttonText: {displayText: 'Owner'}, type: 1},{buttonId: '.infobot', buttonText:{displayText: 'Infobot'}, type: 1}], {quoted: mek})
-							sendButLocation(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName, tamnel, [{buttonId: '.owner', buttonText: {displayText: 'Owner'}, type: 1},{buttonId: '.infobot', buttonText:{displayText: 'Infobot'}, type: 1}], {quoted: mek})
+							sendButImage(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName + `\n*${tanggal}*`, tamnel, [{buttonId: '.menu', buttonText: {displayText: 'Menu'}, type: 1},{buttonId: '.jasher', buttonText:{displayText: 'JaSher'}, type: 1}], {quoted: mek})
+							//sendButLocation(_.jid, '「 PESAN SIARAN 」\n\n' + q, '© ' + BotName, tamnel, [{buttonId: '.owner', buttonText: {displayText: 'Owner'}, type: 1},{buttonId: '.infobot', buttonText:{displayText: 'Infobot'}, type: 1}], {quoted: mek})
 							}
 						reply('Sukses broadcast')
 					}
