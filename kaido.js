@@ -964,6 +964,10 @@ Disini Pusat Layanan Informasi, Informasi apa yang anda butuhkan saat ini`,
                   title: "Informasi Gempa",
                   rowId: `${prefix}gempa`,
                 },
+                {
+                  title: "Informasi Covid",
+                  rowId: `${prefix}covid`,
+                },
               ],
             },
           ],
@@ -1651,7 +1655,7 @@ _Cicilan 6 Bulan_`;
       //══════════[ AC ]══════════//
       case "ac":
         listMsg = {
-          buttonText: "𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨",
+          buttonText: "𝗟𝗜𝗦?? 𝗠𝗘𝗡𝗨",
           footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
           description: `Halo Kak @${sender.split("@")[0]},
 Selamat datang di *${NameStore}*
@@ -2406,7 +2410,7 @@ ${tanggal}`;
           `https://api-alphabot.herokuapp.com/api/downloader/youtube/playmp4?query=${bo}&apikey=Alphabot`
         );
         p4 = await getBuffer(ini.results.result);
-        Dheni.sendMessage(from, p4, video);
+        Kaido.sendMessage(from, p4, video);
         break;
 
       case "ply3":
@@ -2538,6 +2542,43 @@ ${tanggal}`;
         but = [
           {
             buttonId: `.ggs gempa`,
+            buttonText: { displayText: "️Info Lebih Lanjut" },
+            type: 1,
+          },
+        ];
+        sendButImage(from, dr1, dr2, td, but);
+        break;
+        
+        case "infocovid":
+        case "covid":
+      case "corona":
+        sticWait(from);
+        td = fs.readFileSync("./media/covid.jpg");
+        bt = await fetchJson(
+        `https://apicovid19indonesia-v2.vercel.app/api/indonesia`
+        );
+//====== DATA ========    
+d1= `*${bt.positif}*`;
+d2 = `*${bt.sembuh}*`;
+d3= `${bt.meninggal}`;
+d4 = `${bt.dirawat}`;
+d5 = `${bt.lastUpdate}`;
+//====== Positif ========    
+var	reverse = d1.toString().split('').reverse().join(''), 	positif 	= reverse.match(/\d{1,3}/g); 	positif	= positif.join('.').split('').reverse().join(''); 
+//====== Sembuh ========    
+var	reverse = d2.toString().split('').reverse().join(''), 	sembuh 	= reverse.match(/\d{1,3}/g); 	sembuh	= sembuh.join('.').split('').reverse().join(''); 
+//====== Meninggal ========    
+var	reverse = d3.toString().split('').reverse().join(''), 	meninggal 	= reverse.match(/\d{1,3}/g); 	meninggal	= meninggal.join('.').split('').reverse().join(''); 
+//====== Sembuh ========    
+var	reverse = d4.toString().split('').reverse().join(''), 	dirawat 	= reverse.match(/\d{1,3}/g); 	dirawat	= dirawat.join('.').split('').reverse().join(''); 
+var tgl = d5.substring(0, 10);
+var t= d5.substring(12, 19);
+        
+        dr1 = `*「 I N F O C O V I D - 1 9 」*\n\nTerkonfirmasi: ${positif}\nSembuh : ${sembuh}\nMeninggal : ${meninggal}\nKasus Aktif : ${dirawat}\n\nUpdate Terkini : \n${tgl}\nPada Jam : \n${t}`;
+        dr2 = `Klik Di Next Untuk Melanjutkan`;
+        but = [
+          {
+            buttonId: `.ggs covid`,
             buttonText: { displayText: "️Info Lebih Lanjut" },
             type: 1,
           },
