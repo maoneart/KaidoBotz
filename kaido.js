@@ -783,6 +783,10 @@ Ada yang bisa Kaido Bantu?`,
                   rowId: `${prefix}audiomenu`,
                 },
                 {
+                  title: "Informasi",
+                  rowId: `${prefix}info`,
+                },
+                {
                   title: "Donate Bot",
                   rowId: `${prefix}`,
                 },
@@ -942,6 +946,40 @@ Silahkan cari barang yang anda butuhkan`,
           ptt: true,
         });
         break;
+      //══════════[ INFORMASI ]══════════//
+
+      case "info":
+      case "informasi":
+        listMsg = {
+          buttonText: "𝗟𝗜𝗦𝗧 𝗠𝗘𝗡𝗨",
+          footerText: `\n「 ${BotName} 」\n*${tanggal}*`,
+          description: `Halo Kak @${sender.split("@")[0]},
+Selamat datang di *${NameStore}*
+Disini Pusat Layanan Informasi, Informasi apa yang anda butuhkan saat ini`,
+          sections: [
+            {
+              title: `${time} - ${ucapanWaktu} - ${pushname}`,
+              rows: [
+                {
+                  title: "Informasi Gempa",
+                  rowId: `${prefix}gempa`,
+                },
+              ],
+            },
+          ],
+          listType: 1,
+        };
+        Kaido.sendMessage(from, listMsg, MessageType.listMessage, {
+          contextInfo: { mentionedJid: [sender] },
+          quoted: troli,
+        });
+        Kaido.sendMessage(from, kaido, MessageType.audio, {
+          quoted: mek,
+          mimetype: "audio/mp4",
+          ptt: true,
+        });
+        break;
+
       //══════════[ MESIN CUCI ]══════════//
       case "mc":
         listMsg = {
@@ -2489,6 +2527,7 @@ ${tanggal}`;
 
       //══════════[ Menu Informasi ]══════════//
       case "infogempa":
+      case "gempa":
         sticWait(from);
         td = fs.readFileSync("./media/bmkg.jpg");
         bt = await fetchJson(
