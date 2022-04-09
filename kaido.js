@@ -2170,7 +2170,7 @@ ${tanggal}`;
         break;
 
       case "bayar":
-        menu = `*「 PAYMENT 」*
+        menu = `*「 DONASI UNTUK ANAK YATIM 」*
 
 • *Gopay : 082122365620*
 • *Dana : 082122365620*
@@ -2541,8 +2541,8 @@ ${tanggal}`;
         dr2 = `Klik Di Next Untuk Melanjutkan`;
         but = [
           {
-            buttonId: `.ggs gempa`,
-            buttonText: { displayText: "️Info Lebih Lanjut" },
+            buttonId: `${prefix}bayar`,
+            buttonText: { displayText: "️Donasi Untuk Anak Yatim" },
             type: 1,
           },
         ];
@@ -2578,8 +2578,8 @@ var t= d5.substring(12, 19);
         dr2 = `Klik Di Next Untuk Melanjutkan`;
         but = [
           {
-            buttonId: `.ggs covid`,
-            buttonText: { displayText: "️Info Lebih Lanjut" },
+            buttonId: `${prefix}bayar`,
+            buttonText: { displayText: "️Donasi Untuk Anak Yatim" },
             type: 1,
           },
         ];
@@ -2699,6 +2699,55 @@ var t= d5.substring(12, 19);
           quoted: troli,
           caption: teks,
         });
+        break;
+       //══════════[ Cek Resi ]══════════//
+       
+       case "cekresi":
+        //if (!isPremier)return reply(mess.premier)
+        //if (isBanned)return sticBanned(from)
+        if (args.length < 1)
+          return reply(
+            `Kirim perintah\n*${prefix + command}* (Spasi) Nama Kurir|No. Awb\n\nContoh :\n*${prefix + command}* sicepat|002788577386`
+          );
+        if (!q.includes("|"))
+          return reply(
+            `Kirim perintah\n*${prefix + command}* (Spasi) Nama Kurir|No. Awb\n\nContoh :\n*${prefix + command}* sicepat|002788577386`
+          );
+        bo = args.join(" ");
+        tex1 = bo.split("|")[0];
+        tex2 = bo.split("|")[1];
+        sticLoad(from);
+        bt = await fetchJson(
+          `https://api.binderbyte.com/v1/track?api_key=7842e5b420a5727df3b4a24c8d6464016059ef0e150e01e56dd3e6ca33374160&courier=${tex1}&awb=${tex2}`
+        );
+//====== DATA ========    
+awb = `${bt.data.summary.awb}`;
+courier = `${bt.data.summary.courier}`;
+layanan = `${bt.data.summary.service}`;
+tujuan= `${bt.data.detail.destination}`;
+penerima= `${bt.data.detail.receiver}`;
+date = `${bt.data.history[0].date}`;
+pditerima = `${bt.data.history[0].desc}`;
+harga = `${bt.data.summary.amount}`;
+status = `${bt.data.summary.status}`;
+
+var date1 = date.substring(5, 10);
+var tahun = date.substring(0, 4);
+var time1= date.substring(12, 16);
+//var	reverse = harga.toString().split('').reverse().join(''), 	harga1	= reverse.match(/\d{1,3}/g); 	harga1	= harga1.join('.').split('').reverse().join(''); 
+td = fs.readFileSync("./media/" + courier +".jpg");
+
+        dr1 = `*「 ${courier} 」*\n\nAWB: *${awb}*\nLayanan : ${layanan}\nTujuan : ${tujuan}\nPenerima : ${penerima}\nTanggal : ${date1}-${tahun}\nJam : ${time1} WIB\nPaket Di Terima : \n${pditerima}\nBayar : Rp. ${harga}\nStatus Pengiriman : ${status}`;
+        dr2 = `*Klik tombol dibawah ini untuk DONASI anak Yatim*`;
+        but = [
+          {
+            buttonId: `.bayar`,
+            buttonText: { displayText: "️Donasi Untuk Anak Yatim" },
+            type: 1,
+          },
+        ];
+       // Kaido.sendMessage(from, dr1, text);
+       sendButImage(from, dr1, dr2, td, but);
         break;
       //══════════[ Fitur Owner ]══════════//
 
