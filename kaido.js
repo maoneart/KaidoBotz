@@ -2585,6 +2585,24 @@ var t= d5.substring(12, 19);
         ];
         sendButImage(from, dr1, dr2, td, but);
         break;
+        
+        case "jadwalimsak":
+      case "imsak":
+        sticWait(from);
+        td = fs.readFileSync("./media/Jadwal.png");
+        
+        dr1 = `*「 J A D W A L I M S A K」*\n\nUntuk Wilayah Bekasi Dan Sekitarnya`;
+        dr2 = `Klik Di Next Untuk Melanjutkan`;
+        but = [
+          {
+            buttonId: `${prefix}bayar`,
+            buttonText: { displayText: "️Donasi Untuk Anak Yatim" },
+            type: 1,
+          },
+        ];
+        sendButImage(from, dr1, dr2, td, but);
+        break;
+        
 
       case "kompas":
         sticWait(from);
